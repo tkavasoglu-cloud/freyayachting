@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /ucus.html
+
 Sitemap: https://www.freyayachting.com/sitemap.xml
