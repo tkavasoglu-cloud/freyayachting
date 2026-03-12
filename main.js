@@ -1,11 +1,13 @@
 /* ══════════════════════════════════
-   FREYA YACHTING — SHARED JS
-══════════════════════════════════ */
+    FREYA YACHTING — MASTER JS
+    (AI WhatsApp & Follow-up Ready)
+   ══════════════════════════════════ */
 
 /* MOBILE MENU */
 function toggleMobile() {
   var drawer = document.getElementById('mobileDrawer');
   var btn = document.getElementById('ham-btn');
+  if (!drawer || !btn) return;
   var isOpen = drawer.classList.contains('open');
   drawer.classList.toggle('open');
   btn.classList.toggle('open');
@@ -17,11 +19,14 @@ function closeMobile() {
   var drawer = document.getElementById('mobileDrawer');
   var btn = document.getElementById('ham-btn');
   if (drawer) drawer.classList.remove('open');
-  if (btn) { btn.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); }
+  if (btn) { 
+    btn.classList.remove('open'); 
+    btn.setAttribute('aria-expanded', 'false'); 
+  }
   document.body.style.overflow = '';
 }
 
-/* NAVBAR SCROLL */
+/* NAVBAR SCROLL EFFECT */
 window.addEventListener('scroll', function() {
   var nav = document.getElementById('navbar');
   if (nav) {
@@ -49,7 +54,7 @@ function toggleFAQ(btn) {
   }
 }
 
-/* SCROLL REVEAL */
+/* SCROLL REVEAL ANIMATION */
 function initReveal() {
   if (!window.IntersectionObserver) {
     document.querySelectorAll('.reveal').forEach(function(el) { el.classList.add('visible'); });
@@ -69,11 +74,13 @@ function initReveal() {
   });
 }
 
-/* FORM SUBMIT */
-function submitForm() {
+/* CONTACT FORM SUBMIT (OPTIONAL) */
+function submitForm(event) {
+  if (event) event.preventDefault();
   var name = document.getElementById('form-name');
   var email = document.getElementById('form-email');
   var msg = document.getElementById('form-message');
+  
   if (!name || !name.value.trim()) { name && name.focus(); return; }
   if (!email || !email.value.trim()) { email && email.focus(); return; }
 
@@ -81,16 +88,43 @@ function submitForm() {
   var orig = btn.innerHTML;
   btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Gönderildi!';
   btn.style.background = '#16a34a';
-  setTimeout(function() { btn.innerHTML = orig; btn.style.background = ''; }, 3000);
+  
+  setTimeout(function() { 
+    btn.innerHTML = orig; 
+    btn.style.background = ''; 
+  }, 3000);
+
   if (name) name.value = '';
   if (email) email.value = '';
   if (msg) msg.value = '';
 }
 
-/* KEYBOARD */
+/* KEYBOARD SUPPORT */
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeMobile();
 });
 
-/* INIT */
-document.addEventListener('DOMContentLoaded', initReveal);
+/* 🚀 WHATSAPP DYNAMIC BUTTON & INITIALIZATION */
+document.addEventListener('DOMContentLoaded', function() {
+  // Reveal animasyonlarını başlat
+  initReveal();
+
+  // WhatsApp Butonunu Oluştur (Tidio yerine geçer)
+  const wpButton = document.createElement('div');
+  wpButton.id = 'dynamic-wp-button';
+  
+  // BURAYI GÜNCELLE: 90850 ile başlayan numaranı yaz
+  const myPhoneNumber = "908508402465"; 
+  const welcomeMessage = encodeURIComponent("Merhaba, Bavaria 46 kiralama ve fiyatlar hakkında bilgi alabilir miyim? ⛵");
+
+  wpButton.innerHTML = `
+    <a href="https://wa.me/${myPhoneNumber}?text=${welcomeMessage}" target="_blank" 
+       style="position:fixed; bottom:25px; right:25px; z-index:9999; background-color:#25d366; width:65px; height:65px; border-radius:50px; display:flex; align-items:center; justify-content:center; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; cursor:pointer;"
+       onmouseover="this.style.transform='scale(1.1)'" 
+       onmouseout="this.style.transform='scale(1)'">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" style="width:38px; height:38px;" alt="WhatsApp Freya">
+    </a>
+  `;
+  
+  document.body.appendChild(wpButton);
+});
