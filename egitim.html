@@ -33,8 +33,9 @@
 <meta name="twitter:image" content="https://static.wixstatic.com/media/ce3c80_d2a3cb4a8986419e90e85477f444f646~mv2.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="site.css"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,16 +67,16 @@
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://freyayachting.com/"},{"@type":"ListItem","position":2,"name":"Yelken Eğitimi","item":"https://freyayachting.com/egitim.html"}]}
 </script>
 </head>
-<body>
+<body class="redesign-2026">
 
 <a href="#main-content" class="skip-link">İçeriğe Geç</a>
 <nav class="nav" id="navbar" role="navigation" aria-label="Ana navigasyon">
   <div class="nav-inner">
     <a href="index.html" class="logo" aria-label="Freya Yachting Ana Sayfa">
       <div class="logo-icon" aria-hidden="true">
-        <img src="logo.png" alt="Freya Yachting Logo" style="width:36px;height:36px;border-radius:8px;object-fit:cover"/>
+        <img src="logo.png" alt="Freya Yachting Logo" loading="lazy" style="width:36px;height:36px;border-radius:8px;object-fit:cover"/>
       </div>
-      <span class="logo-text">Freya <span>Yachting</span></span>
+      <span class="logo-text">Freya <span>Yatçılık</span></span>
     </a>
     <ul class="nav-links" role="menubar">
       <li role="none"><a href="index.html" role="menuitem">Ana Sayfa</a></li>
@@ -85,9 +86,9 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
         </a>
         <div class="dropdown-panel" role="menu">
-          <a href="freya.html" role="menuitem">Freya — Bavaria Cruiser 46</a>
-          <a href="life-is-beautiful.html" role="menuitem">Life Is Beautiful — Bavaria 46</a>
-          <a href="derin.html" role="menuitem">Derin — Beneteau Clipper 423</a>
+          <a href="freya.html" role="menuitem">Freya · Bavaria Cruiser 46</a>
+          <a href="life-is-beautiful.html" role="menuitem">Life Is Beautiful · Bavaria 46</a>
+          <a href="derin.html" role="menuitem">Derin · Beneteau Clipper 423</a>
         </div>
       </li>
 <li role="none"><a href="egitim.html" class="active" role="menuitem">Yelken Eğitimi</a></li>
@@ -107,9 +108,9 @@
 <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobil navigasyon">
   <a href="index.html" class="mobile-nav-item">Ana Sayfa</a>
   <a href="filomuz.html" class="mobile-nav-item">Filomuz</a>
-  <a href="freya.html" class="mobile-nav-item mobile-nav-sub">↳ Freya — Bavaria 46</a>
+  <a href="freya.html" class="mobile-nav-item mobile-nav-sub">↳ Freya · Bavaria 46</a>
   <a href="life-is-beautiful.html" class="mobile-nav-item mobile-nav-sub">↳ Life Is Beautiful</a>
-  <a href="derin.html" class="mobile-nav-item mobile-nav-sub">↳ Derin — Beneteau 423</a>
+  <a href="derin.html" class="mobile-nav-item mobile-nav-sub">↳ Derin · Beneteau 423</a>
   <a href="egitim.html" class="mobile-nav-item">Yelken Eğitimi</a>
   <a href="rota.html" class="mobile-nav-item">Rota</a>
   <a href="sss.html" class="mobile-nav-item">S.S.S.</a>
@@ -129,7 +130,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2H2v2zM20 8h-2.343L16 6h-8l-1.657 2H4c-1.1 0-2 .9-2 2v6h20v-6c0-1.1-.9-2-2-2z"/></svg>
       Filomuz
     </a>
-    <a href="https://freyayachting.com/freya-offer.html" target="_blank" class="bottom-bar-btn" aria-label="Anında Teklif Al" style="color:var(--gold-lt)">
+    <a href="https://freyayachting.com/freya-offer.html" target="_blank" class="bottom-bar-btn" aria-label="Anında Teklif Al" style="color:var(--flame)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Rezervasyon
     </a>
@@ -145,57 +146,61 @@
 </nav>
 <main id="main-content">
 
-<header class="page-banner">
-  <div class="page-banner-inner">
-    <span class="page-banner-eyebrow">TYF Sertifikalı · World Sailing Onaylı</span>
-    <h1>Yelken <em>Eğitimi</em></h1>
-    <p>Başlangıçtan uluslararası lisansa kadar 3 seviyede profesyonel yelken eğitimi.</p>
+<header class="page-header-2026" aria-labelledby="page-heading">
+  <div class="wrap-2026 page-header-2026__inner">
+    <p class="pill-2026 pill-2026--on-navy">TYF Sertifikalı · World Sailing Onaylı</p>
+    <h1 id="page-heading" class="heading-2026">Yelken <em>Eğitimi</em></h1>
+    <p class="body-2026">Başlangıçtan uluslararası lisansa kadar 3 seviyede profesyonel yelken eğitimi.</p>
   </div>
 </header>
-<section class="section">
-  <div class="container">
-    <div class="reveal" style="max-width:700px;margin-bottom:56px">
-      <div class="section-eyebrow">TUYEP Programı</div>
-      <h2 class="section-title">Yelkende <em>profesyonelleşin</em></h2>
-      <p class="section-body" style="max-width:100%">Türkiye Yelken Federasyonu tarafından geliştirilen TUYEP kapsamında sunulan eğitimlerimiz, World Sailing tarafından tanınmış ve Milli Eğitim Bakanlığı onaylı müfredata dayanmaktadır. Deneyimli eğitmenlerimizle 6 gün teorik ve pratik eğitim.</p>
+
+<section class="section-2026" aria-labelledby="tuyep-heading">
+  <div class="wrap-2026" data-reveal-group>
+    <div class="section-head-2026 section-head-2026--left gsap-reveal" style="max-width:700px;margin-bottom:56px">
+      <p class="pill-2026" style="margin-bottom:18px">TUYEP Programı</p>
+      <h2 id="tuyep-heading" class="heading-2026">Yelkende <em>profesyonelleşin</em></h2>
+      <p class="body-2026">Türkiye Yelken Federasyonu tarafından geliştirilen TUYEP kapsamında sunulan eğitimlerimiz, World Sailing tarafından tanınmış ve Milli Eğitim Bakanlığı onaylı müfredata dayanmaktadır. Deneyimli eğitmenlerimizle 6 gün teorik ve pratik eğitim.</p>
     </div>
-    <div class="edu-grid">
-      <article class="edu-card reveal">
-        <div class="edu-level">Seviye 01 · Başlangıç</div>
+    <div class="edu-grid-2026" data-reveal-group>
+      <article class="edu-card-2026 gsap-reveal">
+        <p class="edu-card-2026__level">Seviye 01 · Başlangıç</p>
         <h3>YY-1 Temel Yatçılık</h3>
         <p>Yelken dünyasına adım atmak isteyenler için özel tasarlanmıştır. Pratik uygulamalar ve teorik derslerle denizle bağınızı güçlendirin.</p>
-        <div class="edu-meta"><span class="edu-chip">6 Gün</span><span class="edu-chip">Sıfırdan Başlangıç</span><span class="edu-chip">TYF Sertifikası</span></div>
+        <div class="edu-card-2026__meta"><span>6 Gün</span><span>Sıfırdan Başlangıç</span><span>TYF Sertifikası</span></div>
       </article>
-      <article class="edu-card reveal reveal-delay-1">
-        <div class="edu-level">Seviye 02 · Orta</div>
+      <article class="edu-card-2026 gsap-reveal">
+        <p class="edu-card-2026__level">Seviye 02 · Orta</p>
         <h3>YY-2 Gezi Yatçılığı</h3>
         <p>Gerçek deniz koşullarında manevra ve rota bilgisi. Yelken becerilerinizi ileri taşıyın, deniz miles'ınızı tamamlayın.</p>
-        <div class="edu-meta"><span class="edu-chip">6 Gün</span><span class="edu-chip">Orta Seviye</span><span class="edu-chip">Mil Eğitimi</span></div>
+        <div class="edu-card-2026__meta"><span>6 Gün</span><span>Orta Seviye</span><span>Mil Eğitimi</span></div>
       </article>
-      <article class="edu-card reveal reveal-delay-2">
-        <div class="edu-level">Seviye 03 · İleri</div>
+      <article class="edu-card-2026 gsap-reveal">
+        <p class="edu-card-2026__level">Seviye 03 · İleri</p>
         <h3>YY-3 İleri Yatçılık</h3>
         <p>Uluslararası geçerliliği olan sertifika. Kaptan lisansı ile dünyada bare-boat kiralama yapabilirsiniz.</p>
-        <div class="edu-meta"><span class="edu-chip">6 Gün</span><span class="edu-chip">İleri Seviye</span><span class="edu-chip">Uluslararası Sertifika</span></div>
+        <div class="edu-card-2026__meta"><span>6 Gün</span><span>İleri Seviye</span><span>Uluslararası Sertifika</span></div>
       </article>
     </div>
-    <div class="cta-dark section-sm" style="border-radius:16px;margin-top:56px">
-      <div style="display:flex;gap:48px;flex-wrap:wrap;position:relative;z-index:1">
-        <div style="flex:1 1 260px">
-          <div class="section-eyebrow" style="color:var(--gold)">Neden Freya?</div>
-          <h3 class="section-title section-title-white" style="font-size:1.6rem">Fethiye'nin en <em>iyi yelken okulu</em></h3>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:10px;margin-top:16px">
-            <li style="color:rgba(255,255,255,.55);font-size:.875rem;display:flex;gap:10px"><span style="color:var(--gold);font-weight:700">✓</span>TYF Lisanslı, deneyimli eğitmenler</li>
-            <li style="color:rgba(255,255,255,.55);font-size:.875rem;display:flex;gap:10px"><span style="color:var(--gold);font-weight:700">✓</span>Uluslararası geçerliliği olan sertifika</li>
-            <li style="color:rgba(255,255,255,.55);font-size:.875rem;display:flex;gap:10px"><span style="color:var(--gold);font-weight:700">✓</span>Gerçek deniz koşullarında pratik</li>
-            <li style="color:rgba(255,255,255,.55);font-size:.875rem;display:flex;gap:10px"><span style="color:var(--gold);font-weight:700">✓</span>Fethiye'nin eşsiz koylarında yelken</li>
-            <li style="color:rgba(255,255,255,.55);font-size:.875rem;display:flex;gap:10px"><span style="color:var(--gold);font-weight:700">✓</span>Küçük gruplar, maksimum öğrenme</li>
-          </ul>
-        </div>
-        <div style="flex:1 1 240px;display:flex;flex-direction:column;justify-content:center">
-          <p style="color:rgba(255,255,255,.45);font-size:.9rem;line-height:1.75;margin-bottom:24px">Eğitim tarihleri ve kayıt için bizi arayın ya da mesaj gönderin.</p>
-          <a class="btn btn-gold" href="iletisim.html">Kayıt İçin İletişim</a>
-        </div>
+  </div>
+</section>
+
+<section class="section-2026 section-2026--navy" aria-labelledby="why-heading">
+  <div class="wrap-2026" data-reveal-group>
+    <div class="about-2026 gsap-reveal">
+      <div>
+        <p class="pill-2026 pill-2026--on-navy">Neden Freya?</p>
+        <h2 id="why-heading" class="heading-2026" style="font-size:1.75rem">Fethiye'nin en <em>iyi yelken okulu</em></h2>
+        <ul class="checklist-2026">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>TYF Lisanslı, deneyimli eğitmenler</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Uluslararası geçerliliği olan sertifika</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Gerçek deniz koşullarında pratik</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Fethiye'nin eşsiz koylarında yelken</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg>Küçük gruplar, maksimum öğrenme</li>
+        </ul>
+      </div>
+      <div>
+        <p class="body-2026" style="margin-bottom:24px">Eğitim tarihleri ve kayıt için bizi arayın ya da mesaj gönderin.</p>
+        <a class="btn-2026 btn-2026--primary" href="iletisim.html">Kayıt İçin İletişim</a>
       </div>
     </div>
   </div>
@@ -207,7 +212,7 @@
     <div class="footer-brand">
       <div class="footer-logo">
         <div class="footer-logo-icon" aria-hidden="true">
-          <img src="logo.png" alt="Freya Yachting Logo" style="width:36px;height:36px;border-radius:8px;object-fit:cover"/>
+          <img src="logo.png" alt="Freya Yachting Logo" loading="lazy" style="width:36px;height:36px;border-radius:8px;object-fit:cover"/>
         </div>
         <span class="footer-logo-text">Freya <span>Yachting</span></span>
       </div>
@@ -259,5 +264,12 @@
   </div>
 </footer>
 <script src="main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="site.js"></script>
+<a href="https://wa.me/908508402465" target="_blank" rel="noopener noreferrer" class="whatsapp-float-2026" aria-label="WhatsApp ile yazın">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div class="whatsapp-tooltip-2026" aria-hidden="true">Sorularınız mı var? WhatsApp ile yazın!</div>
 </body>
 </html>

@@ -33,8 +33,9 @@
 <meta name="twitter:image" content="https://static.wixstatic.com/media/ce3c80_d2a3cb4a8986419e90e85477f444f646~mv2.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="style.css"/>
+<link rel="stylesheet" href="site.css"/>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -99,16 +100,16 @@
 {"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ana Sayfa","item":"https://freyayachting.com/"},{"@type":"ListItem","position":2,"name":"Filomuz","item":"https://freyayachting.com/filomuz.html"},{"@type":"ListItem","position":3,"name":"Freya — Bavaria Cruiser 46","item":"https://freyayachting.com/freya.html"}]}
 </script>
 </head>
-<body>
+<body class="redesign-2026">
 
 <a href="#main-content" class="skip-link">İçeriğe Geç</a>
 <nav class="nav" id="navbar" role="navigation" aria-label="Ana navigasyon">
   <div class="nav-inner">
     <a href="index.html" class="logo" aria-label="Freya Yachting Ana Sayfa">
       <div class="logo-icon" aria-hidden="true">
-        <img src="logo.png" alt="Freya Yachting Logo" style="width:36px;height:36px;border-radius:8px;object-fit:cover"/>
+        <img src="logo.png" alt="Freya Yachting Logo" loading="lazy" style="width:36px;height:36px;border-radius:8px;object-fit:cover"/>
       </div>
-      <span class="logo-text">Freya <span>Yachting</span></span>
+      <span class="logo-text">Freya <span>Yatçılık</span></span>
     </a>
     <ul class="nav-links" role="menubar">
       <li role="none"><a href="index.html" role="menuitem">Ana Sayfa</a></li>
@@ -118,9 +119,9 @@
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
         </a>
         <div class="dropdown-panel" role="menu">
-          <a href="freya.html" role="menuitem">Freya — Bavaria Cruiser 46</a>
-          <a href="life-is-beautiful.html" role="menuitem">Life Is Beautiful — Bavaria 46</a>
-          <a href="derin.html" role="menuitem">Derin — Beneteau Clipper 423</a>
+          <a href="freya.html" role="menuitem">Freya · Bavaria Cruiser 46</a>
+          <a href="life-is-beautiful.html" role="menuitem">Life Is Beautiful · Bavaria 46</a>
+          <a href="derin.html" role="menuitem">Derin · Beneteau Clipper 423</a>
         </div>
       </li>
 <li role="none"><a href="egitim.html" role="menuitem">Yelken Eğitimi</a></li>
@@ -140,9 +141,9 @@
 <nav class="mobile-drawer" id="mobileDrawer" aria-label="Mobil navigasyon">
   <a href="index.html" class="mobile-nav-item">Ana Sayfa</a>
   <a href="filomuz.html" class="mobile-nav-item">Filomuz</a>
-  <a href="freya.html" class="mobile-nav-item mobile-nav-sub">↳ Freya — Bavaria 46</a>
+  <a href="freya.html" class="mobile-nav-item mobile-nav-sub">↳ Freya · Bavaria 46</a>
   <a href="life-is-beautiful.html" class="mobile-nav-item mobile-nav-sub">↳ Life Is Beautiful</a>
-  <a href="derin.html" class="mobile-nav-item mobile-nav-sub">↳ Derin — Beneteau 423</a>
+  <a href="derin.html" class="mobile-nav-item mobile-nav-sub">↳ Derin · Beneteau 423</a>
   <a href="egitim.html" class="mobile-nav-item">Yelken Eğitimi</a>
   <a href="rota.html" class="mobile-nav-item">Rota</a>
   <a href="sss.html" class="mobile-nav-item">S.S.S.</a>
@@ -162,7 +163,7 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2H2v2zM20 8h-2.343L16 6h-8l-1.657 2H4c-1.1 0-2 .9-2 2v6h20v-6c0-1.1-.9-2-2-2z"/></svg>
       Filomuz
     </a>
-    <a href="https://freyayachting.com/freya-offer.html" target="_blank" class="bottom-bar-btn" aria-label="Anında Teklif Al" style="color:var(--gold-lt)">
+    <a href="https://freyayachting.com/freya-offer.html" target="_blank" class="bottom-bar-btn" aria-label="Anında Teklif Al" style="color:var(--flame)">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
       Rezervasyon
     </a>
@@ -178,63 +179,72 @@
 </nav>
 <main id="main-content">
 
-<header class="page-banner">
-  <div class="page-banner-inner">
-    <span class="page-banner-eyebrow">Filomuz</span>
-    <h1>FREYA</h1>
-    <p>2024 Model Bavaria Cruiser 46 · 4 Kamara · 8 Kişilik</p>
+<header class="page-header-2026" aria-labelledby="page-heading">
+  <div class="wrap-2026 page-header-2026__inner">
+    <p class="pill-2026 pill-2026--on-navy">Filomuz</p>
+    <h1 id="page-heading" class="heading-2026">Freya</h1>
+    <p class="body-2026">2024 Model Bavaria Cruiser 46 · 4 Kamara · 8 Kişilik</p>
   </div>
 </header>
-<section class="section">
-  <div class="container">
-    <a href="filomuz.html" style="color:var(--gold);display:inline-flex;align-items:center;gap:6px;font-size:14px;margin-bottom:36px;font-weight:500">
+
+<section class="section-2026" aria-label="Freya tekne detayları">
+  <div class="wrap-2026">
+    <a href="filomuz.html" class="back-link-2026">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
       Filoya Dön
     </a>
-    <div style="display:flex;gap:48px;flex-wrap:wrap;align-items:flex-start">
-      <div style="flex:1 1 300px">
-        <img src="https://static.wixstatic.com/media/ce3c80_4519ba0785e340d0b941bc022c11edf4~mv2.jpeg/v1/fill/w_980,h_592,al_c,q_85,enc_avif/ce3c80_4519ba0785e340d0b941bc022c11edf4~mv2.jpeg" alt="Freya Bavaria Cruiser 46" style="width:100%;border-radius:12px;margin-bottom:16px" loading="lazy"/>
-        <img src="https://static.wixstatic.com/media/ce3c80_1b87742c0e5c4efeb51fc0ee32551953~mv2.jpg/v1/fill/w_980,h_735,al_c,q_85,enc_avif/ce3c80_1b87742c0e5c4efeb51fc0ee32551953~mv2.jpg" alt="Freya İç Mekan" style="width:100%;border-radius:12px" loading="lazy"/>
+    <div class="boat-detail-2026">
+      <div class="boat-detail-2026__media">
+        <img src="https://static.wixstatic.com/media/ce3c80_4519ba0785e340d0b941bc022c11edf4~mv2.jpeg/v1/fill/w_980,h_592,al_c,q_85,enc_avif/ce3c80_4519ba0785e340d0b941bc022c11edf4~mv2.jpeg" alt="Freya Bavaria Cruiser 46" loading="lazy"/>
+        <img src="https://static.wixstatic.com/media/ce3c80_1b87742c0e5c4efeb51fc0ee32551953~mv2.jpg/v1/fill/w_980,h_735,al_c,q_85,enc_avif/ce3c80_1b87742c0e5c4efeb51fc0ee32551953~mv2.jpg" alt="Freya İç Mekan" loading="lazy"/>
       </div>
-      <div style="flex:1 1 300px">
-        <div class="section-eyebrow">Teknik Özellikler</div>
-        <div class="specs-table">
-          <div class="spec-row"><div class="spec-row-label">Tam Boy</div><div class="spec-row-val">14,27 m · 46'8"</div></div>
-          <div class="spec-row"><div class="spec-row-label">Gövde Boyu</div><div class="spec-row-val">13,60 m · 44'6"</div></div>
-          <div class="spec-row"><div class="spec-row-label">Su Hattı Boyu</div><div class="spec-row-val">12,94 m · 42'5"</div></div>
-          <div class="spec-row"><div class="spec-row-label">En</div><div class="spec-row-val">4,35 m · 14'3"</div></div>
-          <div class="spec-row"><div class="spec-row-label">Derinlik</div><div class="spec-row-val">2,10 m · 6'9"</div></div>
-          <div class="spec-row"><div class="spec-row-label">Boş Ağırlık</div><div class="spec-row-val">12.600 kg</div></div>
-          <div class="spec-row"><div class="spec-row-label">Motor</div><div class="spec-row-val">Volvo D2-55</div></div>
-          <div class="spec-row"><div class="spec-row-label">Motor Gücü</div><div class="spec-row-val">41 kW · 75 Hp</div></div>
-          <div class="spec-row"><div class="spec-row-label">Yakıt / Su</div><div class="spec-row-val">210 Lt / 360 Lt</div></div>
-          <div class="spec-row"><div class="spec-row-label">Kamara / WC</div><div class="spec-row-val">4 / 3</div></div>
-          <div class="spec-row"><div class="spec-row-label">Kapasite</div><div class="spec-row-val">8 Kişi</div></div>
-          <div class="spec-row"><div class="spec-row-label">Yelken Alanı</div><div class="spec-row-val">108 m²</div></div>
-          <div class="spec-row"><div class="spec-row-label">Salon Yüksekliği</div><div class="spec-row-val">2,05 m · 6'7"</div></div>
-          <div class="spec-row"><div class="spec-row-label">Direk Yüksekliği</div><div class="spec-row-val">20,75 m</div></div>
-          <div class="spec-row"><div class="spec-row-label">Güneş Enerjisi</div><div class="spec-row-val">340 W</div></div>
-          <div class="spec-row"><div class="spec-row-label">İnvertör</div><div class="spec-row-val">220V · 3000 W</div></div>
+      <div>
+        <div class="boat-detail-2026__specs">
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>8 Kişi</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4v16"/><path d="M22 4v16"/><path d="M2 8h20"/><path d="M2 17h20"/><path d="M9 8v9"/></svg>4 Kabin</span>
+          <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="9" width="20" height="6" rx="1"/><path d="M7 9v3M12 9v3M17 9v3"/></svg>14.27 m</span>
         </div>
-        <div class="spec-cats">
-          <div class="spec-cat">
-            <div class="spec-cat-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Kokpit</div>
+
+        <p class="spec-table-2026__title">Teknik Özellikler</p>
+        <dl class="spec-table-2026">
+          <div class="spec-table-2026__row"><dt>Tam Boy</dt><dd>14,27 m · 46'8"</dd></div>
+          <div class="spec-table-2026__row"><dt>Gövde Boyu</dt><dd>13,60 m · 44'6"</dd></div>
+          <div class="spec-table-2026__row"><dt>Su Hattı Boyu</dt><dd>12,94 m · 42'5"</dd></div>
+          <div class="spec-table-2026__row"><dt>En</dt><dd>4,35 m · 14'3"</dd></div>
+          <div class="spec-table-2026__row"><dt>Derinlik</dt><dd>2,10 m · 6'9"</dd></div>
+          <div class="spec-table-2026__row"><dt>Boş Ağırlık</dt><dd>12.600 kg</dd></div>
+          <div class="spec-table-2026__row"><dt>Motor</dt><dd>Volvo D2-55</dd></div>
+          <div class="spec-table-2026__row"><dt>Motor Gücü</dt><dd>41 kW · 75 Hp</dd></div>
+          <div class="spec-table-2026__row"><dt>Yakıt / Su</dt><dd>210 Lt / 360 Lt</dd></div>
+          <div class="spec-table-2026__row"><dt>Kamara / WC</dt><dd>4 / 3</dd></div>
+          <div class="spec-table-2026__row"><dt>Kapasite</dt><dd>8 Kişi</dd></div>
+          <div class="spec-table-2026__row"><dt>Yelken Alanı</dt><dd>108 m²</dd></div>
+          <div class="spec-table-2026__row"><dt>Salon Yüksekliği</dt><dd>2,05 m · 6'7"</dd></div>
+          <div class="spec-table-2026__row"><dt>Direk Yüksekliği</dt><dd>20,75 m</dd></div>
+          <div class="spec-table-2026__row"><dt>Güneş Enerjisi</dt><dd>340 W</dd></div>
+          <div class="spec-table-2026__row"><dt>İnvertör</dt><dd>220V · 3000 W</dd></div>
+        </dl>
+
+        <div class="spec-groups-2026">
+          <div class="spec-group-2026">
+            <p class="spec-group-2026__title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>Kokpit</p>
             <ul><li>2 Siyah Kompozit Dümen</li><li>Katlanır Kokpit Masası</li><li>4 Vinç (Manual), 2 Kol</li><li>Güneşlenme Minderleri</li><li>Dış Duş</li></ul>
           </div>
-          <div class="spec-cat">
-            <div class="spec-cat-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Güvenlik</div>
+          <div class="spec-group-2026">
+            <p class="spec-group-2026__title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>Güvenlik</p>
             <ul><li>10 Kişilik Can Salı</li><li>10 × 150N Otomatik Yelek</li><li>6 Yangın Söndürücü</li><li>Radar Reflektörü</li><li>Bosun Oturağı</li></ul>
           </div>
-          <div class="spec-cat">
-            <div class="spec-cat-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Elektronik</div>
+          <div class="spec-group-2026">
+            <p class="spec-group-2026__title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Elektronik</p>
             <ul><li>9" B&amp;G Chartplotter</li><li>B&amp;G Autopilot</li><li>B&amp;G V60 + H60 VHF</li><li>Derinlik/Hız/Rüzgar</li><li>2 Triton Ekran</li></ul>
           </div>
-          <div class="spec-cat">
-            <div class="spec-cat-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Konfor</div>
+          <div class="spec-group-2026">
+            <p class="spec-group-2026__title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Konfor</p>
             <ul><li>Elektrikli Tik Platform</li><li>40 Lt Boiler</li><li>Webasto Isıtıcı</li><li>Sprayhood &amp; Bimini</li><li>Çarşaf / Havlu</li></ul>
           </div>
         </div>
-        <a class="btn btn-gold" style="margin-top:36px;width:100%;justify-content:center" href="https://freyayachting.com/freya-offer.html" target="_blank">
+
+        <a class="btn-2026 btn-2026--primary" style="width:100%" href="https://freyayachting.com/freya-offer.html" target="_blank">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
           Bu Tekneyi Rezerve Et
         </a>
@@ -249,7 +259,7 @@
     <div class="footer-brand">
       <div class="footer-logo">
         <div class="footer-logo-icon" aria-hidden="true">
-          <img src="logo.png" alt="Freya Yachting Logo" style="width:36px;height:36px;border-radius:8px;object-fit:cover"/>
+          <img src="logo.png" alt="Freya Yachting Logo" loading="lazy" style="width:36px;height:36px;border-radius:8px;object-fit:cover"/>
         </div>
         <span class="footer-logo-text">Freya <span>Yachting</span></span>
       </div>
@@ -301,5 +311,9 @@
   </div>
 </footer>
 <script src="main.js"></script>
+<a href="https://wa.me/908508402465" target="_blank" rel="noopener noreferrer" class="whatsapp-float-2026" aria-label="WhatsApp ile yazın">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<div class="whatsapp-tooltip-2026" aria-hidden="true">Sorularınız mı var? WhatsApp ile yazın!</div>
 </body>
 </html>

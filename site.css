@@ -1,0 +1,551 @@
+/* ══════════════════════════════════════════════════════════
+   FREYA YACHTING — 2026 REDESIGN, SHARED SYSTEM (all pages)
+   Direction: KLASİK PREMIUM YAT SİTESİ — airy, elegant, trustworthy.
+   Tokens, nav, footer, buttons, pills, cards, section spacing and
+   typography live here so every page renders from one theme. Each
+   page loads: style.css → site.css → (varsa sayfaya özel css, e.g.
+   index.html's home.css for the hero + offer bar).
+   Scoped under body.redesign-2026 so legacy style.css pages that
+   haven't been rolled over yet stay untouched.
+
+   Contrast pairs verified with scripts/contrast.py:
+   - navy on bg / navy on white card:        13.82:1 / 14.57:1
+   - white on navy (btn/footer/hero text):   14.57:1
+   - white on navy-2 (hover shade):          11.64:1
+   - muted slate on bg / on white card:       5.75:1 / 6.07:1
+   - navy on flame (primary CTA text):        4.60:1
+   - flame on bg / on white card (UI/line):   3.01:1 / 3.17:1
+   - flame on navy (UI/line, e.g. focus ring): 4.60:1
+   Flame hue picked from #FF4D00/#FF5714/#FF6200 — #FF4D00 (the
+   most saturated) FAILS as button text with both navy (4.38:1)
+   and white (3.33:1), so it's out. #FF6200 passes navy-text
+   (4.86:1) but FAILS the 3:1 UI-graphics check on --bg (2.84:1),
+   so a "Detaylar →" arrow or hover line in that shade would be
+   invisible-adjacent-to-invisible on the page body. #FF5714 is
+   the only one of the three that clears every pairing it's
+   actually used in, so it won — not just "brightest that passes."
+   White text on flame FAILS in all three candidates; navy is the
+   only working text color, confirmed by testing, not assumed.
+
+   FLAME IS A FILL/LINE COLOR, NOT A TEXT COLOR (rule change) —
+   do not reach for --flame outside these three cases:
+   1. Primary CTA button fills (hero "Teklif Al", offer-bar submit,
+      nav-cta hover, mobile bottom-bar "Rezervasyon") — text on
+      top is navy.
+   2. A small pill-label dot, hover underline/border, or an icon
+      stroke (e.g. the "Detaylar →" arrow, focus ring).
+   3. Heading em-emphasis words: text STAYS navy (or white on navy
+      sections) — flame runs as a brush-stroke underline beneath
+      the word instead of recoloring the glyphs, because flame-as-
+      running-text is illegible. See .heading-2026 em.
+   Navigation, body links at rest, icon boxes and the footer stay
+   navy. Flame is never a section background, a large fill, or the
+   color of running text — including hover states: hover changes
+   navy to navy-2 or adds a flame line, it does not recolor the
+   whole word.
+══════════════════════════════════════════════════════════ */
+
+body.redesign-2026 {
+  --navy:        #0E2A47;  /* structure — hero overlay tint, footer, buttons, icon boxes, headings */
+  --navy-2:      #163A5F;  /* navy hover shade, 11.64:1 w/ white text */
+  --navy-3:      rgba(14,42,71,.12); /* faint navy wash (icon chip bg, dividers) */
+  --bg:          #F0F7FC;  /* page body — very pale baby blue, noticeably bluer than white, 13.47:1 w/ navy text */
+  --card:        #FFFFFF;  /* card surfaces — stay pure white so they read as a step up from --bg */
+  --border:      #E6EAF0;  /* thin card/hairline border */
+  --text-navy:   #0E2A47;
+  --text-muted:  #56637A;  /* 5.61:1 on bg, 6.07:1 on card */
+  --text-on-navy:       #FFFFFF;
+  --text-on-navy-muted: rgba(255,255,255,.72);
+  --flame:       #FF5714;  /* neon accent — FILL/LINE ONLY, never running text. 4.60:1 w/ navy text on fills; only 2.9:1 on --bg directly (see focus-ring note below), so flame UI accents (dots, focus rings) live on --card or --navy, never bare --bg */
+  --flame-hover: #FF7A3C;  /* lighter neon shade for button hover */
+  --neon-green:       #39FF14; /* header "Anında Teklif Al" only — navy text 10.75:1, measured with scripts/contrast.py */
+  --neon-green-hover: #2FE010;
+
+  --section-gap: clamp(64px, 8vw, 112px); /* the ONLY spacing token for section rhythm — every .section-2026 uses this, no per-section overrides */
+  --radius-card: 20px;
+  --radius-sm:   14px;
+  --radius-pill: 999px;
+
+  --font-display: 'Marcellus', Georgia, 'Times New Roman', serif; /* single weight (400) — hierarchy is by size, not weight */
+  --font-body:    'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  background: var(--bg);
+  color: var(--text-navy);
+  font-family: var(--font-body);
+}
+
+/* ─── NAV — repainted in-place (same markup, same main.js) ───
+   Sits over the hero photo on index; a white pill CTA (not orange)
+   per the "nav stays navy/white" rule. On inner pages it sits over
+   the navy page-header band instead of a photo, same treatment. */
+body.redesign-2026 .nav {
+  background: rgba(14, 42, 71, 0.28);
+  border-bottom: 1px solid rgba(255,255,255,0.14);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+}
+body.redesign-2026 .nav.scrolled {
+  background: rgba(14, 42, 71, 0.94);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.2);
+}
+body.redesign-2026 .logo-icon { background: var(--card); border-radius: 8px; box-shadow: none; }
+body.redesign-2026 .logo-icon img { filter: none; }
+body.redesign-2026 .logo-text { font-family: var(--font-display); font-style: normal; font-weight: 400; letter-spacing: 0.015em; color: var(--text-on-navy); }
+body.redesign-2026 .logo-text span { color: var(--neon-green); }
+body.redesign-2026 .nav-links a { font-family: var(--font-body); color: rgba(255,255,255,0.82); box-shadow: inset 0 -2px 0 transparent; }
+body.redesign-2026 .nav-links a.active { color: var(--text-on-navy); background: rgba(255,255,255,0.14); box-shadow: inset 0 -2px 0 var(--flame); }
+body.redesign-2026 .dropdown-panel { background: var(--card); border-color: var(--border); box-shadow: 0 20px 48px rgba(14,42,71,0.18); }
+body.redesign-2026 .dropdown-panel a { color: var(--text-navy); }
+@media (hover: hover) and (pointer: fine) {
+  body.redesign-2026 .nav-links a:hover { color: var(--text-on-navy); background: rgba(255,255,255,0.14); box-shadow: inset 0 -2px 0 var(--flame); }
+  body.redesign-2026 .dropdown-panel a:hover { color: var(--navy); background: var(--navy-3); }
+}
+body.redesign-2026 .nav-cta {
+  background: var(--neon-green) !important;
+  color: var(--text-navy) !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: 0 0 12px rgba(57,255,20,0.5);
+}
+@media (hover: hover) and (pointer: fine) {
+  body.redesign-2026 .nav-cta:hover { background: var(--neon-green-hover) !important; color: var(--navy) !important; box-shadow: 0 0 16px rgba(57,255,20,0.65) !important; }
+}
+body.redesign-2026 .hamburger span { background: var(--text-on-navy); }
+body.redesign-2026 .mobile-drawer { background: var(--navy); }
+body.redesign-2026 .mobile-nav-item { font-family: var(--font-display); font-style: normal; font-weight: 400; letter-spacing: 0.015em; color: rgba(255,255,255,0.9); border-bottom-color: rgba(255,255,255,0.12); border-left: 2px solid transparent; }
+body.redesign-2026 .mobile-nav-sub { font-family: var(--font-body); font-weight: 400; color: rgba(255,255,255,0.55); }
+@media (hover: hover) and (pointer: fine) { body.redesign-2026 .mobile-nav-item:hover { border-left-color: var(--flame); padding-left: 14px; } }
+body.redesign-2026 .mobile-nav-cta { background: var(--card); color: var(--text-navy) !important; font-family: var(--font-body); border-radius: var(--radius-sm); }
+body.redesign-2026 .mobile-bottom-bar { background: rgba(14,42,71,0.97); border-top-color: rgba(255,255,255,0.1); }
+body.redesign-2026 .bottom-bar-btn { color: rgba(255,255,255,0.55); }
+body.redesign-2026 .bottom-bar-btn.active { color: var(--text-on-navy); }
+@media (hover: hover) and (pointer: fine) { body.redesign-2026 .bottom-bar-btn:hover { color: var(--text-on-navy); } }
+body.redesign-2026 .skip-link { background: var(--flame); color: var(--navy); }
+/* Focus ring defaults to navy — it's safe on every light surface (--bg,
+   --card) at 12-14:1, whereas flame only clears 3:1 against --card/--navy,
+   not bare --bg (2.9:1). Flip to flame only inside navy/dark chrome,
+   where navy-on-navy would otherwise be invisible. */
+body.redesign-2026 :focus-visible { outline-color: var(--navy); }
+body.redesign-2026 .nav :focus-visible,
+body.redesign-2026 .mobile-drawer :focus-visible,
+body.redesign-2026 .mobile-bottom-bar :focus-visible,
+body.redesign-2026 footer :focus-visible,
+.section-2026--navy :focus-visible { outline-color: var(--flame); }
+
+/* ─── LAYOUT PRIMITIVES ─── */
+.wrap-2026 { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+@media (min-width: 640px)  { .wrap-2026 { padding: 0 32px; } }
+@media (min-width: 1280px) { .wrap-2026 { padding: 0 48px; } }
+
+.pill-2026 {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--text-navy); background: var(--card);
+  border: 1px solid var(--border);
+  padding: 9px 18px; border-radius: var(--radius-pill);
+}
+.pill-2026::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--flame); flex-shrink: 0; }
+.pill-2026--on-navy { color: var(--text-on-navy); background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25); }
+
+/* ─── SECTION SHELL ─── */
+.section-2026 { padding: var(--section-gap) 0; background: var(--bg); }
+/* Padding never collapses like margin does — two adjacent sections would
+   otherwise stack a full --section-gap on each touching edge (double the
+   intended rhythm). The first section in the flow keeps its top gap;
+   every section directly after another .section-2026 relies on the
+   previous section's bottom padding instead, so the whole page keeps
+   ONE consistent gap between sections, not two added together. */
+.section-2026 + .section-2026 { padding-top: 0; }
+/* ...except when the seam also crosses a background-color change (e.g. into
+   .section-2026--navy): zeroing the top padding there puts content flush
+   against the color boundary instead of inside its own section. Same
+   specificity as the rule above (two classes) — must stay after it in
+   source order to win the tie and restore the token's full top gap. */
+.section-2026 + .section-2026--navy { padding-top: var(--section-gap); }
+.section-2026--navy { background: var(--navy); color: var(--text-on-navy); }
+
+.section-head-2026 { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+@media (min-width: 900px) { .section-head-2026 { margin-bottom: 64px; } }
+.section-head-2026--left { text-align: left; margin-left: 0; margin-right: 0; max-width: none; }
+
+.heading-2026 {
+  font-family: var(--font-display); font-weight: 400;
+  font-size: clamp(1.875rem, 3.6vw, 3rem);
+  line-height: 1.18; letter-spacing: 0.015em;
+  color: var(--text-navy); margin: 18px 0 16px;
+}
+.section-2026--navy .heading-2026 { color: var(--text-on-navy); }
+/* Flame runs as a brush-stroke UNDER the word, not as its color —
+   neon text is illegible, so the glyphs stay navy/white (inherited)
+   and a solid flame band sits below the baseline instead. */
+.heading-2026 em {
+  font-style: normal;
+  color: inherit;
+  padding-bottom: 0.12em;
+  background-image: linear-gradient(var(--flame), var(--flame));
+  background-repeat: no-repeat;
+  background-size: 100% 0.16em;
+  background-position: 0 100%;
+}
+
+.body-2026 { font-size: 1.0625rem; line-height: 1.75; color: var(--text-muted); }
+.section-2026--navy .body-2026 { color: var(--text-on-navy-muted); }
+.section-head-2026 .body-2026 { margin: 0 auto; max-width: 56ch; }
+
+/* ─── BUTTONS — pill-shaped ─── */
+.btn-2026 {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 15px 30px; border-radius: var(--radius-pill);
+  font-family: var(--font-body); font-size: 0.9375rem; font-weight: 600;
+  border: 1.5px solid transparent; cursor: pointer; white-space: nowrap; text-decoration: none;
+  transition: transform 160ms cubic-bezier(0.23,1,0.32,1), background 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
+}
+/* Primary — scoped flame use (case 1: primary CTAs) */
+.btn-2026--primary { background: var(--flame); color: var(--navy); box-shadow: 0 10px 26px rgba(255,87,20,0.32); }
+@media (hover: hover) and (pointer: fine) { .btn-2026--primary:hover { background: var(--flame-hover); transform: translateY(-2px); } }
+.btn-2026--primary:active { transform: scale(0.97); }
+
+.btn-2026--navy { background: var(--navy); color: var(--text-on-navy); }
+@media (hover: hover) and (pointer: fine) { .btn-2026--navy:hover { background: var(--navy-2); transform: translateY(-2px); } }
+.btn-2026--navy:active { transform: scale(0.97); }
+
+.btn-2026--ghost { background: rgba(255,255,255,0.08); color: var(--text-on-navy); border-color: rgba(255,255,255,0.4); backdrop-filter: blur(6px); }
+@media (hover: hover) and (pointer: fine) { .btn-2026--ghost:hover { border-color: var(--flame); color: var(--text-on-navy); background: rgba(255,255,255,0.14); } }
+.btn-2026--ghost:active { transform: scale(0.97); }
+
+.btn-2026--outline { background: transparent; color: var(--text-navy); border-color: var(--border); }
+@media (hover: hover) and (pointer: fine) { .btn-2026--outline:hover { border-color: var(--navy); } }
+
+/* Same phosphorescent green as the header CTA and "Yatçılık", applied to
+   specific secondary actions (call, explore fleet, send message) — not
+   the general ghost/outline treatment, so other ghost buttons keep the
+   default translucent look. */
+.btn-2026--green { background: var(--neon-green); color: var(--text-navy); border-color: transparent; box-shadow: 0 0 12px rgba(57,255,20,0.5); }
+@media (hover: hover) and (pointer: fine) { .btn-2026--green:hover { background: var(--neon-green-hover); box-shadow: 0 0 16px rgba(57,255,20,0.65); } }
+.btn-2026--green:active { transform: scale(0.97); }
+
+/* ─── ABOUT — reusable media+text split (index About, hakkimizda.html) ─── */
+.about-2026 { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+@media (min-width: 900px) { .about-2026 { grid-template-columns: 1fr 1fr; gap: 56px; } }
+.about-2026__media { position: relative; }
+.about-2026__media img {
+  width: 100%; aspect-ratio: 4/5; object-fit: cover; display: block;
+  border-radius: var(--radius-card);
+}
+.about-2026__accent {
+  position: absolute; width: 42%; aspect-ratio: 1200/461; /* matches team-dock-1200's real ratio so cover never crops it */
+  border-radius: var(--radius-sm); overflow: hidden;
+  border: 4px solid var(--bg); box-shadow: 0 20px 40px rgba(14,42,71,0.18);
+  right: -6%; bottom: -8%;
+}
+.about-2026__accent img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.about-2026__body p { margin-bottom: 16px; }
+.about-2026__body .btn-2026 { margin-top: 20px; }
+
+/* ─── STATS ─── */
+.stats-2026 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+@media (min-width: 760px) { .stats-2026 { grid-template-columns: repeat(4, 1fr); gap: 20px; } }
+.stat-card-2026 {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card);
+  padding: 28px 20px; text-align: center;
+}
+.stat-card-2026__num {
+  font-family: var(--font-display); font-weight: 400; letter-spacing: 0.02em;
+  font-size: clamp(2rem, 3.4vw, 2.75rem); color: var(--text-navy); line-height: 1;
+  margin-bottom: 10px;
+}
+.stat-card-2026__label { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+
+/* ─── SERVICES ─── */
+.services-2026 { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 700px)  { .services-2026 { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .services-2026 { grid-template-columns: repeat(3, 1fr); } }
+.service-card-2026 {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card);
+  padding: 32px 28px;
+}
+.service-card-2026__icon {
+  width: 52px; height: 52px; display: flex; align-items: center; justify-content: center;
+  background: var(--navy); color: var(--text-on-navy); border-radius: var(--radius-sm);
+  margin-bottom: 24px;
+  transition: transform 240ms cubic-bezier(0.34,1.56,0.64,1), background-color 200ms ease, box-shadow 200ms ease;
+}
+.service-card-2026__icon svg { transition: transform 240ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .service-card-2026:hover .service-card-2026__icon {
+    transform: translateY(-3px) scale(1.08);
+    background: var(--navy-2);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--flame) 16%, transparent);
+  }
+  .service-card-2026:hover .service-card-2026__icon svg { transform: scale(1.08); }
+}
+.service-card-2026 h3 { font-family: var(--font-display); font-weight: 400; letter-spacing: 0.015em; font-size: 1.3125rem; color: var(--text-navy); margin-bottom: 10px; }
+.service-card-2026 p { font-size: 0.9375rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 18px; }
+.service-card-2026__link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.875rem; font-weight: 600; color: var(--text-navy); text-decoration: none; }
+.service-card-2026__link svg { transition: transform 160ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .service-card-2026__link:hover { color: var(--navy-2); }
+  .service-card-2026__link:hover svg { color: var(--flame); transform: translateX(3px); }
+}
+
+/* ─── FLEET — boat cards + spec-chip language reused on boat detail pages ─── */
+.fleet-2026 { display: grid; grid-template-columns: 1fr; gap: 28px; }
+@media (min-width: 760px)  { .fleet-2026 { grid-template-columns: repeat(3, 1fr); } }
+.boat-card-2026 {
+  display: block; text-decoration: none; color: inherit;
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card);
+  overflow: hidden;
+}
+.boat-card-2026__media { position: relative; aspect-ratio: 4/3; overflow: hidden; background: var(--navy-3); }
+.boat-card-2026__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 600ms cubic-bezier(0.23,1,0.32,1); }
+@media (hover: hover) and (pointer: fine) { .boat-card-2026:hover .boat-card-2026__media img { transform: scale(1.05); } }
+.boat-card-2026__body { padding: 24px; }
+.boat-card-2026__tag { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px; }
+.boat-card-2026 h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.375rem; color: var(--text-navy); margin-bottom: 14px; letter-spacing: 0.015em; transition: color 160ms ease; }
+@media (hover: hover) and (pointer: fine) { .boat-card-2026:hover h3 { color: var(--navy-2); } }
+.boat-card-2026__specs { display: flex; gap: 16px; flex-wrap: wrap; padding-top: 16px; border-top: 1px solid var(--border); }
+.boat-card-2026__specs span { display: flex; align-items: center; gap: 6px; font-size: 0.8125rem; font-weight: 500; color: var(--text-muted); }
+.boat-card-2026__specs svg { color: var(--navy); flex-shrink: 0; }
+
+/* ─── CTA — navy banner, reused at the foot of every inner page ─── */
+.cta-2026__inner { text-align: center; max-width: 640px; margin: 0 auto; }
+.cta-2026 .body-2026 { margin: 0 auto 36px; max-width: 56ch; }
+.cta-2026__actions { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; }
+
+/* ─── BOAT DETAIL — freya.html / life-is-beautiful.html / derin.html ─── */
+.back-link-2026 {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
+  color: var(--text-navy); text-decoration: none; margin-bottom: 32px;
+}
+.back-link-2026 svg { transition: transform 160ms ease; }
+@media (hover: hover) and (pointer: fine) {
+  .back-link-2026:hover { color: var(--navy-2); }
+  .back-link-2026:hover svg { transform: translateX(-3px); }
+}
+
+.boat-detail-2026 { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: start; }
+@media (min-width: 900px) { .boat-detail-2026 { grid-template-columns: 1fr 1fr; gap: 56px; } }
+.boat-detail-2026__media { display: flex; flex-direction: column; gap: 16px; }
+@media (min-width: 900px) { .boat-detail-2026__media { position: sticky; top: 104px; } }
+.boat-detail-2026__media img { width: 100%; border-radius: var(--radius-card); display: block; }
+
+.boat-detail-2026__specs {
+  display: flex; gap: 16px; flex-wrap: wrap; padding-bottom: 20px; margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.boat-detail-2026__specs span { display: flex; align-items: center; gap: 6px; font-size: 0.875rem; font-weight: 500; color: var(--text-muted); }
+.boat-detail-2026__specs svg { color: var(--navy); flex-shrink: 0; }
+
+.spec-table-2026__title,
+.spec-groups-2026__title {
+  font-family: var(--font-body); font-weight: 600; font-size: 0.75rem;
+  letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted);
+  margin-bottom: 14px;
+}
+.spec-table-2026 { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--border); }
+.spec-table-2026__row {
+  display: flex; justify-content: space-between; gap: 16px;
+  padding: 13px 0; border-bottom: 1px solid var(--border); font-size: 0.9375rem;
+}
+.spec-table-2026__row dt { color: var(--text-muted); font-weight: 500; margin: 0; }
+.spec-table-2026__row dd { color: var(--text-navy); font-weight: 600; margin: 0; text-align: right; }
+
+.spec-groups-2026 { display: grid; grid-template-columns: 1fr; gap: 24px; margin: 32px 0; }
+@media (min-width: 560px) { .spec-groups-2026 { grid-template-columns: 1fr 1fr; } }
+.spec-group-2026__title {
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-weight: 600; font-size: 0.875rem;
+  color: var(--text-navy); margin-bottom: 10px;
+}
+.spec-group-2026__title svg { color: var(--flame); flex-shrink: 0; }
+.spec-group-2026 ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 6px; }
+.spec-group-2026 li { font-size: 0.875rem; color: var(--text-muted); padding-left: 15px; position: relative; }
+.spec-group-2026 li::before { content: ''; position: absolute; left: 0; top: 0.55em; width: 5px; height: 5px; border-radius: 50%; background: var(--border); }
+
+/* ─── EDUCATION CARDS — egitim.html ─── */
+.edu-grid-2026 { display: grid; grid-template-columns: 1fr; gap: 24px; }
+@media (min-width: 700px) { .edu-grid-2026 { grid-template-columns: repeat(3, 1fr); } }
+.edu-card-2026 { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 32px 28px; }
+.edu-card-2026__level { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--flame); margin-bottom: 12px; }
+.edu-card-2026 h3 { font-family: var(--font-display); font-weight: 400; font-size: 1.3125rem; color: var(--text-navy); margin-bottom: 10px; letter-spacing: 0.015em; }
+.edu-card-2026 p { font-size: 0.9375rem; line-height: 1.65; color: var(--text-muted); margin-bottom: 18px; }
+.edu-card-2026__meta { display: flex; flex-wrap: wrap; gap: 8px; }
+.edu-card-2026__meta span { font-size: 0.75rem; font-weight: 600; padding: 6px 12px; border-radius: var(--radius-pill); background: var(--navy-3); color: var(--text-navy); }
+
+/* ─── CHECKLIST — reusable feature list with check icons ─── */
+.checklist-2026 { list-style: none; padding: 0; margin: 16px 0 0; display: flex; flex-direction: column; gap: 10px; }
+.checklist-2026 li { display: flex; gap: 10px; font-size: 0.875rem; color: var(--text-on-navy-muted); }
+.checklist-2026 svg { color: var(--flame); flex-shrink: 0; margin-top: 2px; }
+.checklist-2026--light li { color: var(--text-muted); }
+.checklist-2026--light svg { color: var(--navy); }
+
+/* ─── ROUTES — rota.html ─── */
+.route-cols-2026 { display: grid; grid-template-columns: 1fr; gap: 28px; margin-top: 40px; }
+@media (min-width: 700px) { .route-cols-2026 { grid-template-columns: 1fr 1fr; } }
+.route-col-2026 { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; }
+.route-col-2026__title { display: flex; align-items: center; gap: 12px; font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--text-navy); margin-bottom: 18px; letter-spacing: 0.015em; }
+.route-col-2026__title span { display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: var(--navy); color: var(--text-on-navy); font-family: var(--font-body); font-size: 0.875rem; font-weight: 700; flex-shrink: 0; }
+.route-col-2026 ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
+.route-col-2026 li { padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9375rem; color: var(--text-muted); }
+.route-col-2026 li:last-child { border-bottom: none; }
+
+.info-card-2026 { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 28px; margin-top: 40px; }
+.info-card-2026__grid { display: flex; flex-wrap: wrap; gap: 28px; margin-top: 16px; }
+.info-card-2026__label { font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 5px; }
+.info-card-2026__value { font-weight: 600; color: var(--text-navy); }
+
+/* ─── FAQ — sss.html. Repaints the EXISTING .faq-item/.faq-btn/.faq-body
+   classes (style.css) rather than renaming them, because main.js's
+   initFAQ() finds/toggles elements by those exact class names — a
+   rename would silently break the accordion's open/close + max-height
+   animation. Same pattern as the nav/footer overrides above. ─── */
+body.redesign-2026 .faq-item { background: var(--card); border-color: var(--border); border-radius: var(--radius-card); }
+@media (hover: hover) and (pointer: fine) { body.redesign-2026 .faq-item:hover { border-color: var(--navy-3); } }
+body.redesign-2026 .faq-item.open { border-color: var(--navy); box-shadow: 0 4px 24px rgba(14,42,71,0.1); }
+body.redesign-2026 .faq-item.open .faq-chevron { color: var(--flame); }
+body.redesign-2026 .faq-btn { font-family: var(--font-body); font-size: 0.9375rem; font-weight: 600; color: var(--text-navy); padding: 22px 26px; }
+@media (hover: hover) and (pointer: fine) { body.redesign-2026 .faq-btn:hover { color: var(--navy-2); } }
+body.redesign-2026 .faq-chevron { color: var(--text-muted); }
+body.redesign-2026 .faq-body-inner { border-top-color: var(--border); font-size: 0.9375rem; color: var(--text-muted); font-weight: 400; line-height: 1.75; padding: 20px 26px 24px; }
+
+/* ─── CONTACT — iletisim.html ─── */
+.contact-info-2026 { display: flex; flex-direction: column; gap: 20px; margin-bottom: 28px; }
+.contact-info-2026__label { font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+.contact-info-2026__val { font-size: 1rem; font-weight: 600; color: var(--text-navy); line-height: 1.5; }
+.contact-info-2026__val a { color: inherit; text-decoration: none; }
+@media (hover: hover) and (pointer: fine) { .contact-info-2026__val a:hover { color: var(--navy-2); text-decoration: underline; text-decoration-color: var(--flame); text-underline-offset: 3px; } }
+
+.form-2026 { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card); padding: 32px; }
+.form-2026__grid { display: grid; grid-template-columns: 1fr; gap: 18px; }
+@media (min-width: 560px) { .form-2026__grid { grid-template-columns: 1fr 1fr; } }
+.form-2026__group { display: flex; flex-direction: column; gap: 8px; }
+.form-2026__group--full { grid-column: 1 / -1; }
+.form-2026__group label { font-family: var(--font-body); font-size: 0.75rem; font-weight: 600; color: var(--text-navy); }
+.form-2026__group input,
+.form-2026__group select,
+.form-2026__group textarea {
+  appearance: none; -webkit-appearance: none;
+  background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm);
+  color: var(--text-navy); font-family: var(--font-body); font-size: 0.9375rem;
+  padding: 12px 14px; min-height: 44px; width: 100%;
+}
+.form-2026__group textarea { min-height: 120px; resize: vertical; }
+.form-2026__group input:focus-visible,
+.form-2026__group select:focus-visible,
+.form-2026__group textarea:focus-visible { outline: 2px solid var(--flame); outline-offset: 1px; }
+
+/* ─── BLOG — blog.html ─── */
+.blog-grid-2026 { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 32px; }
+.blog-card-2026 {
+  background: var(--card); border: 1px solid var(--border); border-radius: var(--radius-card);
+  overflow: hidden; text-decoration: none; color: inherit; display: flex; flex-direction: column;
+  transition: border-color 200ms ease, transform 200ms cubic-bezier(0.23,1,0.32,1);
+}
+@media (hover: hover) and (pointer: fine) { .blog-card-2026:hover { border-color: var(--navy); transform: translateY(-4px); } }
+.blog-card-2026__img { aspect-ratio: 16/9; background: var(--navy-3); overflow: hidden; }
+.blog-card-2026__img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.blog-card-2026__body { padding: 24px; flex: 1; display: flex; flex-direction: column; }
+.blog-card-2026__meta { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.blog-card-2026__tag { font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); background: var(--navy-3); padding: 4px 10px; border-radius: var(--radius-pill); }
+.blog-card-2026__date { font-size: 0.75rem; color: var(--text-muted); }
+.blog-card-2026 h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.25rem; color: var(--text-navy); margin: 0 0 12px; line-height: 1.35; letter-spacing: 0.015em; }
+.blog-card-2026 p { font-size: 0.9375rem; color: var(--text-muted); line-height: 1.65; margin: 0 0 20px; flex: 1; }
+.blog-card-2026__link { font-size: 0.8125rem; font-weight: 600; color: var(--text-navy); display: flex; align-items: center; gap: 6px; }
+
+/* ─── ARTICLE — blog/*.html long-form posts ─── */
+.article-hero-2026 {
+  position: relative; padding: 152px 0 64px; text-align: center;
+  background: var(--navy); color: var(--text-on-navy); overflow: clip;
+}
+@media (min-width: 640px) { .article-hero-2026 { padding: 160px 0 72px; } }
+.article-hero-2026__bg { position: absolute; inset: 0; z-index: 0; }
+.article-hero-2026__bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.article-hero-2026__bg::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(14,26,42,.55) 0%, rgba(14,26,42,.85) 100%); }
+.article-hero-2026__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; padding: 0 20px; }
+.article-hero-2026 h1 { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.75rem, 4vw, 2.75rem); line-height: 1.25; color: var(--text-on-navy); margin: 0; }
+
+.article-2026 { max-width: 740px; margin: 0 auto; padding: 0 20px; }
+.article-2026__divider { width: 40px; height: 1px; background: var(--border); margin: 0 auto 40px; }
+.article-2026 h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; color: var(--text-navy); margin: 48px 0 16px; line-height: 1.3; letter-spacing: 0.015em; }
+.article-2026 p { font-size: 1.0625rem; line-height: 1.85; color: var(--text-muted); margin: 0 0 20px; }
+.article-2026__cta { margin: 60px 0 0; padding: 40px; background: var(--navy-3); border: 1px solid var(--border); border-radius: var(--radius-card); text-align: center; }
+.article-2026__cta p { color: var(--text-navy); margin: 0 0 20px; }
+
+/* ─── WHATSAPP FLOAT — persistent chat entry point, every page ───
+   Wired to a different WhatsApp line (+90 850 840 24 65, chatbot) than the
+   rest of the site's WhatsApp touchpoints (footer/header/hero icons,
+   offer-bar — all +90 533 811 00 50, live support). Confirmed intentional,
+   not a typo — do not "fix" this number to match the others.
+   z-index sits above ordinary content/hero (which top out around 3) but
+   below --z-drawer/--z-nav (499/500 in style.css) so it's correctly
+   hidden behind an open mobile menu instead of floating over it. ─── */
+.whatsapp-float-2026 {
+  position: fixed; bottom: 24px; right: 24px; z-index: 50;
+  width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: #25D366; box-shadow: 0 4px 16px rgba(37,211,102,0.4);
+  transition: transform 200ms cubic-bezier(0.23,1,0.32,1), box-shadow 200ms ease;
+}
+@media (hover: hover) and (pointer: fine) {
+  .whatsapp-float-2026:hover { transform: scale(1.08); box-shadow: 0 6px 24px rgba(37,211,102,0.5); }
+}
+.whatsapp-float-2026:active { transform: scale(0.96); }
+.whatsapp-float-2026 svg { width: 30px; height: 30px; fill: #fff; }
+
+.whatsapp-tooltip-2026 {
+  position: fixed; bottom: 92px; right: 24px; z-index: 49;
+  background: var(--card); color: var(--text-navy);
+  font-family: var(--font-body); font-size: 0.8125rem; font-weight: 500;
+  padding: 10px 16px; border-radius: var(--radius-sm) var(--radius-sm) 0 var(--radius-sm);
+  box-shadow: 0 4px 16px rgba(14,42,71,0.14);
+  max-width: 220px;
+  opacity: 0; transform: translateY(10px);
+  animation: whatsapp-tooltip-in-2026 400ms ease 1.6s forwards;
+  pointer-events: none;
+}
+@keyframes whatsapp-tooltip-in-2026 { to { opacity: 1; transform: translateY(0); } }
+
+/* Clears the fixed .mobile-bottom-bar (~68px + safe-area, style.css:1015) */
+@media (max-width: 900px) {
+  .whatsapp-float-2026 { width: 52px; height: 52px; bottom: calc(84px + env(safe-area-inset-bottom)); right: 16px; }
+  .whatsapp-float-2026 svg { width: 26px; height: 26px; }
+  .whatsapp-tooltip-2026 { bottom: calc(140px + env(safe-area-inset-bottom)); right: 16px; font-size: 0.75rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-tooltip-2026 { animation: none; opacity: 1; transform: none; }
+}
+
+/* ─── PAGE HEADER — short navy band for inner pages (not a full hero) ─── */
+.page-header-2026 {
+  background: var(--navy); color: var(--text-on-navy);
+  padding: 152px 0 56px; text-align: center;
+}
+@media (min-width: 640px)  { .page-header-2026 { padding: 160px 0 64px; } }
+.page-header-2026__inner { max-width: 720px; margin: 0 auto; }
+.page-header-2026 .pill-2026--on-navy { margin: 0 auto 18px; }
+.page-header-2026 .heading-2026 { color: var(--text-on-navy); margin-top: 0; }
+.page-header-2026 .body-2026 { color: var(--text-on-navy-muted); margin: 0 auto; max-width: 56ch; }
+
+/* ─── FOOTER — repainted in place (navy, allowed here) ─── */
+body.redesign-2026 footer[role="contentinfo"] { background: var(--navy); color: var(--text-on-navy-muted); }
+body.redesign-2026 .footer-logo-icon { background: var(--card); border-radius: 8px; }
+body.redesign-2026 .footer-logo-text { font-family: var(--font-display); font-style: normal; font-weight: 400; letter-spacing: 0.015em; color: var(--text-on-navy); }
+body.redesign-2026 .footer-logo-text span { color: var(--text-on-navy); opacity: .7; }
+body.redesign-2026 .footer-col-title { font-family: var(--font-body); font-weight: 600; letter-spacing: 0.04em; color: var(--text-on-navy); }
+body.redesign-2026 .footer-col a, body.redesign-2026 .footer-brand p { color: var(--text-on-navy-muted); }
+@media (hover: hover) and (pointer: fine) { body.redesign-2026 .footer-col a:hover { color: var(--text-on-navy); text-decoration: underline; text-decoration-color: var(--flame); text-underline-offset: 3px; } }
+body.redesign-2026 .social-link { border-color: rgba(255,255,255,0.2); color: var(--text-on-navy-muted); }
+@media (hover: hover) and (pointer: fine) { body.redesign-2026 .social-link:hover { border-color: var(--flame); color: var(--flame); } }
+body.redesign-2026 .footer-bottom { border-top-color: rgba(255,255,255,0.12); }
+
+/* ─── MOTION — light touch: fade-up only ─── */
+.gsap-reveal.gsap-armed { opacity: 0; transform: translateY(24px); }
+.gsap-reveal { will-change: opacity, transform; }
+
+@media (prefers-reduced-motion: reduce) {
+  .gsap-reveal.gsap-armed { opacity: 1 !important; transform: none !important; }
+  .boat-card-2026__media img { transition: none !important; }
+  .service-card-2026__icon,
+  .service-card-2026__icon svg { transform: none !important; transition: none !important; }
+}
