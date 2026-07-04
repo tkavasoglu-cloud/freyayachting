@@ -468,6 +468,7 @@ body.redesign-2026 .faq-body-inner { border-top-color: var(--border); font-size:
 .article-2026 { max-width: 740px; margin: 0 auto; padding: 0 20px; }
 .article-2026__divider { width: 40px; height: 1px; background: var(--border); margin: 0 auto 40px; }
 .article-2026 h2 { font-family: var(--font-display); font-weight: 400; font-size: 1.5rem; color: var(--text-navy); margin: 48px 0 16px; line-height: 1.3; letter-spacing: 0.015em; }
+.article-2026 h3 { font-family: var(--font-body); font-weight: 600; font-size: 1rem; color: var(--text-navy); margin: 32px 0 12px; letter-spacing: 0.01em; }
 .article-2026 p { font-size: 1.0625rem; line-height: 1.85; color: var(--text-muted); margin: 0 0 20px; }
 .article-2026__cta { margin: 60px 0 0; padding: 40px; background: var(--navy-3); border: 1px solid var(--border); border-radius: var(--radius-card); text-align: center; }
 .article-2026__cta p { color: var(--text-navy); margin: 0 0 20px; }
