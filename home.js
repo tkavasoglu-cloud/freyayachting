@@ -25,10 +25,13 @@
         ? new Date(date + 'T00:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })
         : 'belirtilecek bir tarihte';
 
-      var message = 'Merhaba, ' + dateText + ' için ' + guests + ' kişilik ' + boat +
-        ' rezervasyonu hakkında teklif almak istiyorum.';
+      var guestCount = guests.replace(/\s*Kişi$/, '');
 
-      window.open('https://wa.me/905338110050?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
+      var message = boat === 'Fark Etmez'
+        ? 'Merhaba, ' + dateText + ' için ' + guestCount + ' kişilik rezervasyon hakkında teklif almak istiyorum.'
+        : 'Merhaba, ' + dateText + ' için ' + guestCount + ' kişilik ' + boat + ' rezervasyonu hakkında teklif almak istiyorum.';
+
+      window.open('https://wa.me/908508402465?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
     });
   }
 
