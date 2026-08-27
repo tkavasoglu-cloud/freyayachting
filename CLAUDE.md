@@ -1,3 +1,7 @@
+> **Not:** Mimariyi, veri akışını veya bu dosyada yazılan bir kararı
+> değiştiren bir iş yaptığında, görevi bitirmeden önce bu dosyayı da
+> güncelle — elle hatırlatılmasını bekleme.
+
 # Freya Yachting — freyayachting.com
 
 ## Ne işe yarıyor
