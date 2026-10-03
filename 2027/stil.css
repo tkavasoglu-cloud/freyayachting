@@ -1,0 +1,548 @@
+@font-face{font-family:"Archivo";src:url(fonts/archivo-latin.woff2) format("woff2");font-weight:400 800;font-stretch:62% 100%;font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Archivo";src:url(fonts/archivo-latin-ext.woff2) format("woff2");font-weight:400 800;font-stretch:62% 100%;font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C0}
+@font-face{font-family:"Instrument Serif";font-style:italic;src:url(fonts/instrument-italic-latin.woff2) format("woff2");font-display:swap;unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:"Instrument Serif";font-style:italic;src:url(fonts/instrument-italic-latin-ext.woff2) format("woff2");font-display:swap;unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1E9F,U+20A0-20AB,U+20AD-20C0}
+
+:root{
+  --gece:#06101d;
+  --gece-2:#0b1a2e;
+  --lacivert:#10294a;
+  --deniz:#2c6e9b;
+  --deniz-acik:#9cc3dd;
+  --kirik:#eef0ea;
+  --kirik-2:#c4ced8;
+  --kirmizi:#d7262e;
+  --kirmizi-2:#b81d25;
+  --kalin:"Archivo",system-ui,sans-serif;
+  --italik:"Instrument Serif",Georgia,serif;
+  --cam:rgba(11,26,46,.6);
+  --cam-kenar:rgba(238,240,234,.18);
+  --kenar:clamp(1.1rem,4.5vw,3rem);
+  --ust-h:4.6rem;
+  /* pace: the one place to tune the opening (film.js reads these).
+     --sahne-sure: how long a scene stays fully visible; --dahil-sure: the 4-item included scene;
+     --gecis: enter / exit transition; --kademe: stagger between items.
+     The yacht's cursor / drag behaviour is tuned in film.js (AYAR). */
+  --sahne-sure:5.5s;
+  --dahil-sure:6.5s;
+  --gecis:.9s;
+  --kademe:.12s;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--gece);color:var(--kirik);-webkit-text-size-adjust:100%;scrollbar-color:var(--deniz) var(--gece)}
+body{font-family:var(--kalin);font-stretch:100%;font-size:1rem;line-height:1.5;-webkit-font-smoothing:antialiased}
+::selection{background:var(--deniz);color:var(--kirik)}
+a{color:inherit;text-underline-offset:.2em}
+:focus-visible{outline:2px solid var(--deniz-acik);outline-offset:3px;border-radius:6px}
+img,canvas,svg{display:block;max-width:100%}
+ul,ol{list-style:none;padding:0}
+[hidden]{display:none!important}
+
+/* ---------- type: huge and hard against tiny and spaced ---------- */
+.b-kalin{display:block;font-family:var(--kalin);font-weight:800;font-stretch:62%;text-transform:uppercase;letter-spacing:-.01em;line-height:.86}
+.b-italik{display:block;font-family:var(--italik);font-style:italic;font-weight:400;line-height:1.05;letter-spacing:-.01em;text-transform:none}
+.mini{font-family:var(--kalin);font-size:.7rem;font-weight:500;letter-spacing:.2em;text-transform:uppercase;line-height:1.6;color:var(--kirik-2)}
+.baslik{font-size:clamp(4.4rem,22vw,9rem)}
+.baslik .b-italik{font-size:.6em;margin:.03em 0 .08em .04em}
+.kirmizi{color:var(--kirmizi);font-style:normal}
+
+/* ---------- top bar ---------- */
+.ust{position:fixed;z-index:40;inset:0 0 auto 0;height:calc(var(--ust-h) + env(safe-area-inset-top));padding:env(safe-area-inset-top) var(--kenar) 0;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+.ust>a{pointer-events:auto}
+.ust-logo{display:inline-flex;align-items:center;gap:.7rem;min-height:44px;text-decoration:none;font-family:var(--italik);font-style:italic;font-size:2rem;line-height:1;transition:opacity .5s var(--ease)}
+.ust-logo img{width:54px;height:54px}
+.ust-wa{display:inline-flex;align-items:center;gap:.5rem;min-height:44px;padding:0 1rem;border-radius:99px;font-size:.78rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;background:rgba(6,16,29,.5);border:1px solid var(--cam-kenar);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:background-color .25s var(--ease)}
+.ust-wa:hover{background:rgba(44,110,155,.45)}
+.wa-ikon{width:1.15em;height:1.15em;fill:currentColor;flex:none}
+
+/* ---------- buttons ---------- */
+.dugme{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:3rem;padding:.85rem 1.5rem;border-radius:99px;background:var(--kirmizi);color:#fff;font-weight:600;font-size:1rem;letter-spacing:.01em;text-decoration:none;box-shadow:0 12px 26px -14px rgba(0,0,0,.7);transition:background-color .25s var(--ease),transform .25s var(--ease)}
+.dugme:hover{background:var(--kirmizi-2)}
+.dugme:active{transform:scale(.97)}
+.dugme-kucuk{min-height:2.75rem;padding:.6rem 1.15rem;font-size:.9rem}
+.dugme-buyuk{min-height:3.6rem;padding:1rem 2rem;font-size:1.1rem}
+.yuvarlak-wa{display:grid;place-items:center;width:4rem;height:4rem;border-radius:50%;background:var(--kirmizi);color:#fff;box-shadow:0 14px 30px -14px rgba(0,0,0,.75);transition:background-color .25s var(--ease),transform .25s var(--ease)}
+.yuvarlak-wa .wa-ikon{width:1.7rem;height:1.7rem}
+.yuvarlak-wa:hover{background:var(--kirmizi-2)}
+.yuvarlak-wa:active{transform:scale(.94)}
+
+/* ---------- glass ---------- */
+.cam{background:var(--cam);border:1px solid var(--cam-kenar);border-radius:16px;-webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);box-shadow:0 20px 40px -26px rgba(0,0,0,.7)}
+.kart-bag{display:block;position:relative;color:inherit;text-decoration:none;padding:1rem 2.8rem 1rem 1.1rem;transition:background-color .25s var(--ease),border-color .25s var(--ease)}
+.kart-bag strong{display:block;font-size:1rem;font-weight:600;line-height:1.3}
+.kart-bag .mini{display:block;margin-top:.3rem}
+.kart-metin{display:block;margin-top:.3rem;font-size:.86rem;line-height:1.45;color:var(--kirik-2)}
+.kart-bag::after,.bas-bag::after{content:"";position:absolute;top:.9rem;right:.9rem;width:1rem;height:1rem;background:currentColor;opacity:.7;-webkit-mask:var(--ok) center/contain no-repeat;mask:var(--ok) center/contain no-repeat;transition:transform .3s var(--ease),opacity .3s}
+:root{--ok:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M8.5 7H17v8.5'/%3E%3C/svg%3E")}
+.kart-bag:hover,.kart-bag:focus-visible{background-color:rgba(16,41,74,.78);border-color:rgba(238,240,234,.36)}
+.kart-bag:hover::after,.kart-bag:focus-visible::after,.bas-bag:hover::after,.bas-bag:focus-visible::after{opacity:1;transform:translate(2px,-2px)}
+
+/* ================= opening: one screen, video plays on its own ================= */
+.kahraman{position:relative;height:100svh;min-height:34rem}
+.sahne{position:absolute;inset:0;overflow:hidden;background:var(--gece)}
+.medya{position:absolute;inset:0;width:100%;height:100%}
+.medya img{width:100%;height:100%;object-fit:cover}
+.tuval{display:block;opacity:0;transition:opacity .5s var(--ease)}
+.tuval-hazir .tuval{opacity:1}
+/* touch: horizontal drag turns the yacht, vertical swipes still scroll the page */
+.kahraman .sahne{touch-action:pan-y}
+/* landscape clip on a tall screen: a wide band in the middle, edges fading into the night */
+@media (max-aspect-ratio:1/1){
+  .sahne[data-telefon-kadraj="serit"] .medya{inset:auto;left:50%;top:46%;width:auto;height:60%;aspect-ratio:4/3;transform:translate(-50%,-50%);-webkit-mask:linear-gradient(transparent,#000 26%,#000 74%,transparent);mask:linear-gradient(transparent,#000 26%,#000 74%,transparent)}
+}
+.karart{position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(to bottom,rgba(6,16,29,.5),rgba(6,16,29,.1) 30%,rgba(6,16,29,0) 50%,rgba(6,16,29,.08) 70%,rgba(6,16,29,.5))}
+.perde{display:none}
+
+/* layers */
+.kahraman .baslik,.katman,.alt-sabit{position:absolute;z-index:2}
+.kahraman .baslik{left:var(--kenar);top:calc(var(--ust-h) + env(safe-area-inset-top) + .6rem);font-size:clamp(3.6rem,18vw,6rem);text-shadow:0 2px 28px rgba(6,16,29,.5)}
+.katman{inset:0;padding:calc(var(--ust-h) + env(safe-area-inset-top)) var(--kenar) calc(6.4rem + env(safe-area-inset-bottom));display:flex;flex-direction:column;justify-content:flex-end;gap:.6rem;pointer-events:none}
+.katman a{pointer-events:auto}
+.alt-sabit{left:var(--kenar);right:var(--kenar);bottom:calc(1.2rem + env(safe-area-inset-bottom));display:flex;align-items:center;gap:1rem}
+.haftalar-bag{display:inline-flex;align-items:center;gap:.4rem;min-height:44px;padding:0 .95rem;border-radius:99px;text-decoration:none;color:var(--kirik);background:rgba(6,16,29,.45);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.haftalar-bag:hover{text-decoration:underline}
+
+.acilis-kartlar{display:grid;gap:.5rem}
+.acilis-kartlar .kart-bag{padding:.8rem 2.6rem .8rem 1rem}
+.d3{justify-content:space-between}
+.d3 h2{font-size:clamp(3.8rem,19vw,6rem);text-shadow:0 2px 28px rgba(6,16,29,.5)}
+.d3 .b-italik{font-size:.58em;margin-left:.05em}
+.bolum-sol{margin-top:.6rem}
+.bolum-sag{text-align:right;margin-top:auto}
+.bolum-sag .b-italik{margin-right:.05em}
+.serit{overflow:hidden;border-block:1px solid var(--cam-kenar);margin-inline:calc(var(--kenar) * -1);padding:.6rem 0}
+.serit-ic{display:flex;width:max-content;gap:0}
+.serit-ic span{padding-right:2rem}
+.serit-ic span::after{content:"•";margin-left:2rem;color:var(--deniz-acik)}
+/* the strip starts from its beginning each time scene 3 arrives; 72s for three sets = the earlier 24s per set, same speed */
+.sahne-3 .serit-ic{animation:serit 72s linear infinite}
+@keyframes serit{to{transform:translateX(-50%)}}
+.egil{transition:transform .5s var(--ease)}
+
+/* ---------- opening text timeline ----------
+   Final state is the default: headline, WhatsApp and "Haftaları gör" on the poster.
+   With JS, film.js moves each element through: waiting (below, blurred) -> .gorunur -> .cikti (above, blurred). */
+.anim:not(.son-kalir){opacity:0;visibility:hidden}
+.js .anim,.js .son-gelir{opacity:0;visibility:hidden;filter:blur(16px);transform:translate3d(0,var(--yuksel,26px),0);
+  transition:opacity var(--gecis) var(--ease) var(--gecikme,0s),filter var(--gecis) var(--ease) var(--gecikme,0s),transform var(--gecis) var(--ease) var(--gecikme,0s),visibility 0s linear calc(var(--gecis) + var(--gecikme,0s))}
+.js .anim.gorunur,.js .son-gelir.gorunur{opacity:1;visibility:visible;filter:none;transform:none;pointer-events:auto;
+  transition:opacity var(--gecis) var(--ease) var(--gecikme,0s),filter var(--gecis) var(--ease) var(--gecikme,0s),transform var(--gecis) var(--ease) var(--gecikme,0s),visibility 0s linear var(--gecikme,0s)}
+.js .anim.cikti{transform:translate3d(0,-14px,0);filter:blur(12px)}
+.js.durgun .son-kalir,.js.durgun .son-gelir{opacity:1;visibility:visible;filter:none;transform:none}
+.perde-sag{transition:opacity var(--gecis) var(--ease)}
+.sahne-3 .perde-sag{opacity:1}
+
+/* scene dots: small marks, full-size touch targets */
+.noktalar{position:absolute;z-index:3;left:50%;bottom:calc(5.6rem + env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:0}
+.nokta-dugme{width:44px;height:44px;display:grid;place-items:center;border:0;background:none;cursor:pointer;padding:0}
+.nokta-dugme span{width:7px;height:7px;border-radius:50%;background:rgba(238,240,234,.4);transition:background-color .3s var(--ease),transform .3s var(--ease)}
+.nokta-dugme[aria-current="step"] span{background:var(--kirik);transform:scale(1.35)}
+.nokta-dugme:hover span{background:rgba(238,240,234,.75)}
+.duraklatildi .nokta-dugme[aria-current="step"] span{background:var(--deniz-acik)}
+
+
+
+/* ---------- after the film ---------- */
+.bilgi{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.bilgi-kart{padding:.9rem 1rem;display:flex;flex-direction:column;gap:.3rem}
+.bilgi-kart dt{font-size:.64rem}
+.bilgi-kart dd{font-size:1.05rem;font-weight:600;line-height:1.3}
+
+.bolum,.son{width:100%;max-width:80rem;margin-inline:auto;padding:clamp(4.5rem,12vh,8rem) var(--kenar);scroll-margin-top:var(--ust-h)}
+.bolum+.bolum{border-top:1px solid var(--cam-kenar)}
+.bolum-baslik{font-size:clamp(3.6rem,17vw,8rem);margin-bottom:1rem}
+.bolum-baslik .b-italik{font-size:.52em;color:var(--deniz-acik);margin-left:.05em}
+.bolum-not{margin-bottom:2rem}
+.hafta-liste{display:grid;gap:.6rem;max-width:44rem}
+.hafta{display:grid;grid-template-columns:1fr auto;align-items:center;gap:.25rem 1rem;padding:1.1rem 1.1rem 1.1rem 1.25rem}
+.hafta-tarih{grid-column:1;font-family:var(--kalin);font-weight:800;font-stretch:62%;text-transform:uppercase;font-size:clamp(1.8rem,8vw,2.6rem);line-height:1}
+.hafta-not{grid-column:1}
+.hafta .dugme{grid-column:2;grid-row:1/3}
+.son{display:grid;justify-items:start;gap:.4rem;padding-bottom:6rem}
+.son .dugme{margin-top:.6rem}
+.son-tel{margin-top:.8rem;font-size:.9rem;color:var(--kirik-2);font-variant-numeric:tabular-nums}
+.alt{padding:1.6rem var(--kenar) calc(1.6rem + env(safe-area-inset-bottom));border-top:1px solid var(--cam-kenar);text-align:center}
+
+
+/* top bar: clear over the video, solid once the page scrolls */
+.ust::before{content:"";position:absolute;inset:0;z-index:-1;background:rgba(6,16,29,.82);border-bottom:1px solid var(--cam-kenar);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);opacity:0;transition:opacity .35s var(--ease)}
+.kaydirildi .ust::before{opacity:1}
+
+@media (min-width:900px){
+  .perde{display:block;position:absolute;inset:0;pointer-events:none}
+  .perde-sol{background:linear-gradient(90deg,rgba(6,16,29,.62) 0%,rgba(6,16,29,.32) 24%,rgba(6,16,29,0) 42%)}
+  .perde-sag{opacity:0;background:linear-gradient(270deg,rgba(6,16,29,.5) 0%,rgba(6,16,29,.25) 18%,rgba(6,16,29,0) 32%)}
+  .kahraman .baslik{top:50%;translate:0 -56%;font-size:clamp(5rem,9.5vw,9rem)}
+  .katman{padding:calc(var(--ust-h) + 2rem) var(--kenar) 7rem}
+  .d1{align-items:flex-end;justify-content:center}
+  .acilis-kartlar{width:23rem}
+  .d3{flex-direction:row;align-items:center;justify-content:space-between;flex-wrap:wrap;align-content:center}
+  .d3 .serit{position:absolute;top:calc(var(--ust-h) + 1rem);left:0;right:0;margin:0}
+  .d3 h2{font-size:clamp(5rem,9.5vw,9rem)}
+  .bolum-sol,.bolum-sag{margin:0}
+  .alt-sabit{bottom:2.2rem}
+  .bilgi{grid-template-columns:repeat(4,1fr)}
+  }
+
+@media (max-width:520px){
+  .hafta{grid-template-columns:1fr;gap:.35rem}
+  .hafta .dugme{grid-column:1;grid-row:auto;justify-self:start;margin-top:.6rem}
+}
+.bilgi-kart dt{font-size:.7rem}
+.bolum-not .kirmizi{color:var(--kirik);font-weight:700;white-space:nowrap}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+
+/* WhatsApp: a round button while the text plays, a labeled pill in the final state */
+.yuvarlak-wa{width:auto;min-width:4rem;padding:0 1.5rem 0 1.15rem;gap:.65rem;display:inline-flex;align-items:center;justify-content:center;border-radius:99px;font-weight:600;font-size:1rem;text-decoration:none;white-space:nowrap}
+.wa-etiket{display:inline-block;overflow:hidden;max-width:14rem}
+.yuvarlak-wa,.wa-etiket{transition:padding var(--gecis) var(--ease),gap var(--gecis) var(--ease),max-width var(--gecis) var(--ease),opacity var(--gecis) var(--ease),background-color .25s var(--ease)}
+.js:not(.durgun):not(.son-durum) .yuvarlak-wa{padding:0;gap:0}
+.js:not(.durgun):not(.son-durum) .wa-etiket{max-width:0;opacity:0}
+.yuvarlak-wa,.haftalar-bag{flex:none;white-space:nowrap}
+@media (max-width:520px){
+  .alt-sabit{gap:.5rem}
+  .yuvarlak-wa{padding:0 1.1rem 0 .95rem;gap:.55rem;font-size:.95rem}
+  .haftalar-bag{padding:0 .5rem;letter-spacing:.12em;background:none;-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+
+
+/* sections with a photograph behind them: the picture spans the full width at its own
+   proportion and fades into the night ground; the words sit where the subject is not */
+.gorselli{position:relative;max-width:none;isolation:isolate;overflow:hidden;padding-inline:0}
+.gorselli+.bolum{border-top:0}
+.bolum-gorsel{position:absolute;inset:0 0 auto 0;z-index:-1}
+.bolum-gorsel img{width:100%;height:auto;opacity:0;transition:opacity .8s var(--ease)}
+.bolum-gorsel img.yuklendi{opacity:1}
+.bolum-gorsel::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,16,29,.45) 0%,rgba(6,16,29,.08) 22%,rgba(6,16,29,.12) 62%,rgba(6,16,29,.7) 86%,var(--gece) 100%)}
+.bolum-ic{max-width:80rem;margin-inline:auto;padding-inline:var(--kenar)}
+.gorselli .bolum-baslik{text-shadow:0 2px 28px rgba(6,16,29,.5)}
+.gorselli .bolum-not{color:var(--kirik)}
+/* phone: picture on top, the heading starts on the sea at its foot */
+.g-haftalar{padding-top:calc(100vw - 3.4rem)}
+@media (min-width:700px){
+  .bolum-gorsel::after{background:linear-gradient(to bottom,rgba(6,16,29,.4) 0%,rgba(6,16,29,0) 18%,rgba(6,16,29,0) 60%,rgba(6,16,29,.55) 80%,var(--gece) 100%)}
+  /* weeks: boat and couple centre-left, open sea bottom-right takes the text */
+  .g-haftalar{padding-top:calc(66vw * .56)}
+  .g-haftalar .bolum-ic{max-width:none;margin:0;padding-left:64vw;padding-right:var(--kenar)}
+  .g-haftalar .hafta{grid-template-columns:1fr;gap:.35rem}
+  .g-haftalar .hafta .dugme{grid-column:1;grid-row:auto;justify-self:start;margin-top:.6rem}
+  .g-haftalar .bolum-gorsel::after{background:radial-gradient(70% 60% at 85% 75%,rgba(6,16,29,.55),rgba(6,16,29,0) 70%),linear-gradient(to bottom,rgba(6,16,29,.4) 0%,rgba(6,16,29,0) 18%,rgba(6,16,29,0) 70%,var(--gece) 100%)}
+}
+
+/* ---------- fleet: one consistent grid, the flagship leads ---------- */
+.filo .bolum-baslik .b-italik{color:var(--deniz-acik)}
+.filo-izgara{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.75rem}
+.filo-amiral{grid-column:1/-1}
+.filo-kart{display:flex;min-width:0}
+.filo-bag,.filo-bos{flex:1;display:flex;flex-direction:column;border-radius:16px;border:1px solid var(--cam-kenar);background:var(--gece-2);overflow:hidden;text-decoration:none;color:inherit}
+.filo-bag.kart-bag{padding:0}
+.filo-bag.kart-bag::after{z-index:2;color:var(--kirik);top:1rem;right:1rem}
+.filo-gorsel{display:block;aspect-ratio:16/9;background:var(--lacivert)}
+.filo-gorsel img{width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .8s var(--ease)}
+.filo-gorsel img.yuklendi{opacity:1}
+.filo-metin{display:flex;flex-direction:column;gap:.35rem;padding:1.1rem 1.2rem 1.2rem}
+.filo-rozet{color:var(--deniz-acik)}
+.filo-ad{font-family:var(--kalin);font-weight:800;font-stretch:62%;text-transform:uppercase;font-size:2rem;line-height:.95;letter-spacing:-.005em}
+.filo-amiral .filo-ad{font-size:clamp(2.6rem,10vw,3.4rem)}
+.filo-alt{font-size:.92rem;color:var(--kirik-2);line-height:1.4}
+.filo-bos{justify-content:flex-end;gap:.3rem;min-height:9.5rem;padding:1rem 1.1rem;background:transparent;border-style:dashed;border-color:rgba(238,240,234,.22)}
+.filo-bos .filo-ad{font-size:1.35rem;color:var(--kirik-2)}
+.filo-bos .filo-alt{font-size:.8rem}
+.filo-bag:hover,.filo-bag:focus-visible{border-color:rgba(238,240,234,.4);background:var(--lacivert)}
+@media (min-width:900px){
+  .filo-izgara{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(12.5rem,auto);gap:1rem}
+  .filo-amiral{grid-column:span 2;grid-row:span 2}
+  .filo-amiral .filo-gorsel{aspect-ratio:auto;flex:1;min-height:18rem}
+  .filo-bos{min-height:0}
+}
+
+/* weeks: filter by boat */
+.filtre{display:flex;flex-wrap:wrap;gap:.5rem;margin:.4rem 0 1.2rem}
+.filtre-dugme{min-height:44px;padding:0 1.1rem;border-radius:99px;border:1px solid var(--cam-kenar);background:rgba(6,16,29,.55);color:var(--kirik);font:600 .9rem/1 var(--kalin);letter-spacing:.02em;cursor:pointer;-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:background-color .2s var(--ease),color .2s var(--ease)}
+.filtre-dugme[aria-pressed="true"]{background:var(--kirik);color:var(--gece);border-color:var(--kirik)}
+.filtre-dugme:not(:disabled):not([aria-pressed="true"]):hover{background:rgba(44,110,155,.45)}
+.filtre-dugme:disabled{color:var(--kirik-2);border-style:dashed;cursor:default}
+.hafta-bos .hafta-tarih{font-size:clamp(1.5rem,6vw,2rem)}
+
+/* Filomuz over its photograph: the boat stays clear, the grid starts on the sea below the hull */
+.g-filo{padding-top:calc(56.25vw - 2.6rem)}
+@media (min-width:700px){ .g-filo{padding-top:calc(56.25vw * .8)} }
+.g-filo .bolum-gorsel::after{background:linear-gradient(to bottom,rgba(6,16,29,.45) 0%,rgba(6,16,29,0) 20%,rgba(6,16,29,0) 58%,rgba(6,16,29,.75) 84%,var(--gece) 100%)}
+.filo-amiral .filo-bag{justify-content:flex-end;min-height:15rem;background:linear-gradient(160deg,rgba(16,41,74,.92),rgba(11,26,46,.92))}
+.filo-amiral .filo-metin{padding:1.4rem 1.4rem 1.5rem}
+/* keep the scene dots in their own lane above the bottom row */
+.katman{padding-bottom:calc(8.8rem + env(safe-area-inset-bottom))}
+.noktalar{bottom:calc(5.2rem + env(safe-area-inset-bottom))}
+@media (min-width:900px){ .katman{padding-bottom:8.6rem} .noktalar{bottom:5.4rem} }
+@media (min-width:700px){ .g-filo{padding-top:calc(56.25vw * .86)} }
+
+/* ---------- Filomuz: 01 is the section's full background; glass cards in the opening's language ---------- */
+.g-filo{padding-top:calc(var(--ust-h) + env(safe-area-inset-top) + 2rem);min-height:100svh}
+@media (min-width:700px){ .g-filo{padding-top:calc(var(--ust-h) + 3rem)} }
+.g-filo .bolum-gorsel{inset:0;height:min(100%,125svh)}
+.g-filo .bolum-gorsel img{width:100%;height:100%;object-fit:cover;object-position:20% 50%}
+.g-filo .bolum-gorsel::after{background:linear-gradient(to bottom,rgba(6,16,29,.62) 0%,rgba(6,16,29,.18) 26%,rgba(6,16,29,.1) 55%,rgba(6,16,29,.7) 80%,var(--gece) 100%)}
+.g-filo .bolum-not{color:var(--kirik)}
+/* phone: heading over the sky, the bow shows through, cards stack below the hull */
+.g-filo .filo-izgara{margin-top:calc(min(125svh, 1100px) * .5)}
+.filo-bag,.filo-bos{background:rgba(11,26,46,.6);border:1px solid var(--cam-kenar);border-style:solid;border-radius:16px;-webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);box-shadow:0 20px 40px -26px rgba(0,0,0,.7)}
+.filo-amiral .filo-bag{background:rgba(6,16,29,.74)}
+.filo-bos{min-height:8.5rem}
+.filo-bos .mini{color:var(--deniz-acik)}
+.filo-bag:hover,.filo-bag:focus-visible{background:rgba(16,41,74,.82);border-color:rgba(238,240,234,.38)}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .filo-bag,.filo-bos,.cam{background:rgba(6,16,29,.86)}
+}
+/* desktop: heading in the sky at top left, the grid leans into the right column; bow and forward hull stay clear */
+@media (min-width:900px){
+  .g-filo .bolum-gorsel{height:100%}
+  .g-filo .bolum-gorsel img{object-position:18% 40%}
+  .g-filo .bolum-gorsel::after{background:radial-gradient(55% 50% at 0% 0%,rgba(6,16,29,.62),rgba(6,16,29,0) 70%),linear-gradient(90deg,rgba(6,16,29,0) 45%,rgba(6,16,29,.35) 70%,rgba(6,16,29,.5) 100%),linear-gradient(to bottom,rgba(6,16,29,.4) 0%,rgba(6,16,29,0) 18%,rgba(6,16,29,0) 78%,var(--gece) 100%)}
+  .g-filo .bolum-ic{max-width:none;display:grid;grid-template-columns:minmax(0,1fr) min(42rem,46vw);column-gap:3rem;align-items:start;padding-inline:var(--kenar)}
+  .g-filo .bolum-baslik,.g-filo .bolum-not{grid-column:1}
+  .g-filo .filo-izgara{grid-column:2;grid-row:1 / span 3;margin-top:0;grid-template-columns:repeat(2,minmax(0,1fr));grid-auto-rows:auto;gap:.9rem}
+  .g-filo .filo-amiral{grid-column:1 / -1;grid-row:auto}
+  .g-filo .filo-amiral .filo-bag{min-height:13.5rem}
+  .g-filo .filo-bos{min-height:7.5rem}
+  .g-filo{padding-bottom:5rem}
+}
+.bolum-gorsel{display:block}
+.g-filo .bolum-baslik .b-italik{color:var(--kirik)}
+.g-filo .bolum-not{text-shadow:0 1px 14px rgba(6,16,29,.85),0 0 2px rgba(6,16,29,.6)}
+@media (min-width:900px){
+  .g-filo .bolum-gorsel::after{background:radial-gradient(60% 62% at 0% 0%,rgba(6,16,29,.72),rgba(6,16,29,0) 72%),linear-gradient(90deg,rgba(6,16,29,0) 45%,rgba(6,16,29,.35) 70%,rgba(6,16,29,.5) 100%),linear-gradient(to bottom,rgba(6,16,29,.4) 0%,rgba(6,16,29,0) 18%,rgba(6,16,29,0) 66%,rgba(6,16,29,.55) 86%,var(--gece) 100%)}
+}
+
+/* ---------- 2027 boş haftalar: same structure as Filomuz, image 1 as the full background ---------- */
+.g-haftalar{padding-top:calc(var(--ust-h) + env(safe-area-inset-top) + 2rem);min-height:100svh}
+.g-haftalar .bolum-gorsel{inset:0;height:min(100%,125svh)}
+.g-haftalar .bolum-gorsel img{width:100%;height:100%;object-fit:cover;object-position:52% 40%}
+.g-haftalar .bolum-gorsel::after{background:linear-gradient(to bottom,rgba(6,16,29,.62) 0%,rgba(6,16,29,.18) 26%,rgba(6,16,29,.1) 55%,rgba(6,16,29,.7) 80%,var(--gece) 100%)}
+.g-haftalar .bolum-ic{max-width:80rem;margin-inline:auto;padding-inline:var(--kenar)}
+.g-haftalar .bolum-baslik .b-italik,.g-haftalar .bolum-not{color:var(--kirik)}
+.g-haftalar .bolum-not{text-shadow:0 1px 14px rgba(6,16,29,.85),0 0 2px rgba(6,16,29,.6)}
+/* phone: heading over the sea, the bow and deck show through, the weeks stack below */
+.g-haftalar .hafta-sutun{margin-top:calc(min(125svh, 1100px) * .38)}
+.g-haftalar .hafta{background:rgba(6,16,29,.7);grid-template-columns:1fr;gap:.35rem}
+.g-haftalar .hafta .dugme{grid-column:1;grid-row:auto;justify-self:start;margin-top:.6rem}
+
+@media (min-width:900px){
+  .g-haftalar{padding-top:calc(var(--ust-h) + 3rem);padding-bottom:4rem;display:flex}
+  .g-haftalar .bolum-gorsel{height:100%}
+  .g-haftalar .bolum-gorsel img{object-position:50% 38%}
+  /* heading in the open sea top-left; the weeks column sits in the open sea bottom-right */
+  .g-haftalar .bolum-gorsel::after{background:radial-gradient(55% 50% at 0% 0%,rgba(6,16,29,.6),rgba(6,16,29,0) 72%),radial-gradient(50% 55% at 100% 100%,rgba(6,16,29,.6),rgba(6,16,29,0) 72%),linear-gradient(to bottom,rgba(6,16,29,.4) 0%,rgba(6,16,29,0) 18%,rgba(6,16,29,0) 66%,rgba(6,16,29,.55) 86%,var(--gece) 100%)}
+  .g-haftalar .bolum-ic{flex:1;max-width:none;margin:0;padding-left:var(--kenar);display:grid;grid-template-columns:minmax(0,1fr) min(32rem,38vw);grid-template-rows:auto 1fr;column-gap:3rem}
+  .g-haftalar .bolum-baslik{grid-column:1;grid-row:1}
+  .g-haftalar .hafta-sutun{grid-column:2;grid-row:2;align-self:end;margin-top:0}
+}
+/* the weeks column reads as one glass panel, so its small lines hold over the bright deck */
+.g-haftalar .hafta-sutun{padding:1.1rem;border-radius:16px;border:1px solid var(--cam-kenar);background:rgba(6,16,29,.62);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);box-shadow:0 20px 40px -26px rgba(0,0,0,.7);margin-top:calc(min(125svh, 1100px) * .46)}
+.g-haftalar .hafta-sutun .filtre{margin-top:0}
+.g-haftalar .hafta-sutun .bolum-not{margin-bottom:1rem;text-shadow:none}
+.g-haftalar .hafta{background:rgba(11,26,46,.7);-webkit-backdrop-filter:none;backdrop-filter:none}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){ .g-haftalar .hafta-sutun{background:rgba(6,16,29,.88)} }
+@media (min-width:900px){
+  .g-haftalar{padding-bottom:6rem}
+  .g-haftalar .hafta-sutun{margin-top:0;grid-template-columns:none}
+  .g-haftalar .bolum-ic{grid-template-columns:minmax(0,1fr) min(30rem,34vw)}
+}
+
+/* three clips play together; only the chosen one is visible, the change is a cross-fade */
+.video{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity var(--gecis-video,.7s) ease}
+.video.secili{opacity:1}
+
+
+/* yon: the bow clip is the opaque floor; side clips fade in over it, opacity set by film.js */
+.video{backface-visibility:hidden;transition:none}
+.video.taban{z-index:1}
+.video[data-yon="iskele"],.video[data-yon="sancak"]{z-index:2;opacity:0}
+.video.taban.secili{opacity:1;transition:opacity .6s var(--ease)}
+/* stacking in the opening: clips 1–2 · veil 3 · words 4 · scene dots 5 */
+.perde{z-index:3}
+.kahraman .baslik,.katman,.alt-sabit{z-index:4}
+.noktalar{z-index:5}
+
+/* index mode (from the supplied index.html): the picture bleeds 4% on every side and is steered by film.js */
+.mod-index .video{inset:-4%;width:108%;height:108%;will-change:transform}
+.mod-index .medya.poster img{transform:scale(1.123)}
+.ipucu-rota{display:none}
+.imlec-nokta{display:none}
+@media (hover:hover) and (pointer:fine){
+  .mod-index .sahne{cursor:none}
+  .mod-index .sahne a,.mod-index .sahne button{cursor:pointer}
+  .mod-index .ipucu-rota{display:block;position:absolute;z-index:4;right:var(--kenar);bottom:2.4rem;text-align:right;color:rgba(238,240,234,.75);pointer-events:none}
+  .mod-index .imlec-nokta{display:block;position:fixed;left:0;top:0;z-index:60;width:14px;height:14px;border:1px solid rgba(255,255,255,.9);border-radius:50%;pointer-events:none;opacity:0;transform:translate3d(-50%,-50%,0);transition:opacity .25s ease}
+  .mod-index .imlec-nokta::after{content:"";position:absolute;inset:4px;border-radius:50%;background:#fff;opacity:.75}
+  .mod-index .imlec-nokta.gorunur{opacity:1}
+}
+
+.mod-genis .video{inset:-8%;width:116%;height:116%;will-change:transform}
+
+/* closing WhatsApp section over image 2: the yacht's stern and the couple stay clear; the words sit on open sea */
+.g-son{padding-top:calc(100vw - 3rem);padding-bottom:5rem}
+.g-son .son-ic{display:grid;justify-items:start;gap:.4rem}
+.g-son .bolum-baslik .b-italik{color:var(--kirik)}
+.g-son .bolum-not,.g-son .son-tel{text-shadow:0 1px 14px rgba(6,16,29,.85)}
+@media (min-width:900px){
+  .g-son{min-height:100svh;display:flex;align-items:flex-end;padding:0 0 4.5rem}
+  .g-son .bolum-gorsel{height:100%}
+  .g-son .bolum-gorsel img{height:100%;object-fit:cover;object-position:50% 40%}
+  .g-son .bolum-gorsel::after{background:radial-gradient(55% 55% at 100% 100%,rgba(6,16,29,.62),rgba(6,16,29,0) 72%),linear-gradient(to bottom,rgba(6,16,29,.4) 0%,rgba(6,16,29,0) 18%,rgba(6,16,29,0) 70%,rgba(6,16,29,.45) 100%)}
+  .g-son .son-ic{max-width:none;margin:0 0 0 auto;width:min(34rem,38vw);padding-right:var(--kenar);justify-items:start}
+}
+@media (min-width:900px){
+  .g-son .son-ic{margin:0 auto 0 0;width:min(24rem,24vw);padding-left:var(--kenar);padding-right:0}
+  .g-son .bolum-baslik{font-size:clamp(3.4rem,5.4vw,5.5rem)}
+  .g-son .bolum-gorsel::after{background:radial-gradient(45% 60% at 0% 100%,rgba(6,16,29,.6),rgba(6,16,29,0) 72%),linear-gradient(to bottom,rgba(6,16,29,.4) 0%,rgba(6,16,29,0) 18%,rgba(6,16,29,0) 70%,rgba(6,16,29,.45) 100%)}
+}
+
+/* opening video: plays on its own */
+.video.duz{opacity:1;z-index:1}
+
+/* letter wave: blurred, low and transparent letters ripple in one after another */
+.kelime{display:inline-block;white-space:nowrap}
+.harf-hazir .harf{display:inline-block;opacity:0;filter:blur(12px);transform:translate3d(0,.38em,0)}
+/* line by line: each line waits for the one before (--satir), then its letters ripple in (--h) */
+.harf-hazir .harf-oynat .harf{animation:harf-gel 1.05s var(--ease) both;animation-delay:calc(var(--satir, 0) * 650ms + var(--h) * 42ms + var(--gecikme, 0ms))}
+@keyframes harf-gel{
+  0%{opacity:0;filter:blur(12px);transform:translate3d(0,.38em,0)}
+  55%{opacity:1;filter:blur(2px);transform:translate3d(0,-.05em,0)}
+  100%{opacity:1;filter:blur(0);transform:none}
+}
+.durgun .harf{opacity:1!important;filter:none!important;transform:none!important}
+
+/* the opening headline runs to five lines: smaller so the longest line ("İLK KEZ ÇIKAN") never breaks */
+.kahraman .baslik{font-size:clamp(2.8rem,12.5vw,4.4rem)}
+.kahraman .baslik .b-italik{font-size:.58em;line-height:1.1;margin:.02em 0 .16em .04em}
+@media (min-width:900px){ .kahraman .baslik{font-size:clamp(4rem,6.2vw,6.4rem)} }
+
+/* the headline in two sides: left first, then the right side enters on its own */
+.kahraman h1.baslik-ikili{position:absolute;inset:0;z-index:4;margin:0;font-size:clamp(2.8rem,12.5vw,4.4rem);translate:none;pointer-events:none;text-shadow:0 2px 28px rgba(6,16,29,.5)}
+.baslik-ikili .baslik-sol,.baslik-ikili .baslik-sag{position:absolute;display:block}
+.baslik-ikili .baslik-sol{left:var(--kenar);top:calc(var(--ust-h) + env(safe-area-inset-top) + .6rem)}
+.baslik-ikili .baslik-sag{right:var(--kenar);top:calc(var(--ust-h) + env(safe-area-inset-top) + 7.4rem);text-align:right}
+.baslik-ikili .b-italik{font-size:.58em;line-height:1.1;margin:.02em .04em .16em}
+@media (min-width:900px){
+  .kahraman h1.baslik-ikili{font-size:clamp(4rem,6.2vw,6.4rem)}
+  .baslik-ikili .baslik-sol{top:calc(var(--ust-h) + 4vh)}
+  .baslik-ikili .baslik-sag{top:auto;bottom:calc(8.6rem + 4vh)}
+  /* scene-1 cards move to the lower left, clear of the right-hand side of the headline */
+  .d1{align-items:flex-start;justify-content:flex-end}
+}
+
+/* scene 2: four phrases, each one bold word + one italic word, zig-zagging in one after another */
+.ozellikler{justify-content:space-evenly;gap:0;padding-top:calc(var(--ust-h) + env(safe-area-inset-top) + 1rem)}
+.ozellik{margin:0;font-size:clamp(2.5rem,11.5vw,4rem);line-height:1;text-shadow:0 2px 26px rgba(6,16,29,.55)}
+.ozellik .b-kalin,.ozellik .b-italik{display:inline}
+.ozellik .b-italik{font-size:.68em;margin-left:.12em;color:var(--kirik)}
+.ozellik-2,.ozellik-4{text-align:right}
+@media (min-width:900px){
+  .ozellikler{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(4,auto);align-content:center;row-gap:1.4rem;padding-top:calc(var(--ust-h) + 1rem)}
+  .ozellik{font-size:clamp(3rem,5.2vw,5.6rem)}
+  .ozellik-1{grid-column:1;grid-row:1}
+  .ozellik-2{grid-column:2;grid-row:2}
+  .ozellik-3{grid-column:1;grid-row:3}
+  .ozellik-4{grid-column:2;grid-row:4}
+}
+
+/* top bar: the Freya Yachting logo, mark and lettering side by side */
+.ust-logo{gap:.7rem}
+.ust-logo img.logo-isaret{width:auto;height:50px}
+.ust-logo img.logo-yazi{width:auto;height:32px}
+@media (max-width:420px){ .ust-logo img.logo-isaret{height:44px} .ust-logo img.logo-yazi{height:27px} }
+/* scene-2 phrases sit over the white hull on phones: a firmer shadow keeps them legible */
+.ozellik{text-shadow:0 2px 18px rgba(6,16,29,.8),0 0 3px rgba(6,16,29,.55)}
+
+/* adjustments: logo 20% larger · left headline block 20px lower · scene-2 phrases 20% smaller */
+.ust-logo img.logo-isaret{height:60px}
+.ust-logo img.logo-yazi{height:38.4px}
+@media (max-width:420px){ .ust-logo img.logo-isaret{height:52.8px} .ust-logo img.logo-yazi{height:32.4px} }
+.baslik-ikili .baslik-sol{top:calc(var(--ust-h) + env(safe-area-inset-top) + .6rem + 20px)}
+.ozellik{font-size:clamp(2rem,9.2vw,3.2rem)}
+@media (min-width:900px){
+  .baslik-ikili .baslik-sol{top:calc(var(--ust-h) + 4vh + 20px)}
+  .ozellik{font-size:clamp(2.4rem,4.16vw,4.48rem)}
+}
+
+/* ---------- buttons in the freyayachting.com palette (site.css, btn-2026) ----------
+   primary = flame + navy text · ghost = translucent white on dark · selected = white card + navy text.
+   No other colours on buttons. */
+:root{
+  --site-flame:#FF5714;
+  --site-flame-hover:#FF7A3C;
+  --site-navy:#0E2A47;
+  --site-navy-2:#163A5F;
+  --site-beyaz:#FFFFFF;
+}
+/* primary: every WhatsApp action */
+.dugme,.yuvarlak-wa{background:var(--site-flame);color:var(--site-navy);box-shadow:0 10px 26px rgba(255,87,20,.32)}
+@media (hover:hover) and (pointer:fine){ .dugme:hover,.yuvarlak-wa:hover{background:var(--site-flame-hover)} }
+.dugme .wa-ikon,.yuvarlak-wa .wa-ikon{fill:var(--site-navy)}
+/* ghost: the top-bar WhatsApp pill and "Haftaları gör" */
+.ust-wa,.haftalar-bag{background:rgba(255,255,255,.08);color:var(--site-beyaz);border:1.5px solid rgba(255,255,255,.4);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+@media (hover:hover) and (pointer:fine){ .ust-wa:hover,.haftalar-bag:hover{background:rgba(255,255,255,.14);border-color:var(--site-flame);text-decoration:none} }
+@media (max-width:520px){ .haftalar-bag{border:1.5px solid rgba(255,255,255,.4);background:rgba(255,255,255,.08);padding:0 .8rem} }
+/* weeks filter: selected = white card + navy text, the rest ghost */
+.filtre-dugme{background:rgba(255,255,255,.08);color:var(--site-beyaz);border:1.5px solid rgba(255,255,255,.4)}
+.filtre-dugme[aria-pressed="true"]{background:var(--site-beyaz);color:var(--site-navy);border-color:var(--site-beyaz)}
+.filtre-dugme:not(:disabled):not([aria-pressed="true"]):hover{background:rgba(255,255,255,.14);border-color:var(--site-flame)}
+.filtre-dugme:disabled{color:rgba(255,255,255,.7);border-style:dashed}
+
+/* logo 30% larger; the top bar grows with it (everything below is placed from --ust-h) */
+:root{--ust-h:5.4rem}
+.ust-logo img.logo-isaret{height:78px}
+.ust-logo img.logo-yazi{height:49.9px}
+@media (max-width:420px){ .ust-logo img.logo-isaret{height:68.6px} .ust-logo img.logo-yazi{height:42.1px} }
+@media (min-width:900px){ :root{--ust-h:6rem} }
+/* very narrow phones: the top-bar WhatsApp button keeps only its icon, so the larger logo has room */
+@media (max-width:380px){ .ust-wa{width:44px;padding:0;justify-content:center} .ust-wa span{display:none} .ust-wa .wa-ikon{width:1.35em;height:1.35em} }
+
+/* opening cards: titles only, in the site's neon green (site.css --neon-green) */
+:root{--site-fosfor:#39FF14}
+.acilis-kartlar .kart-bag strong{color:var(--site-fosfor)}
+
+/* fleet cards: boat names in the site's neon green (placeholders "Yeni tekne" stay muted) */
+.filo-bag .filo-ad{color:var(--site-fosfor)}
+
+/* ---------- contact & social in the top bar (desktop: inline · phone: a slim strip above the logo row) ---------- */
+.ust-iletisim{display:flex;align-items:center;gap:.4rem;margin-left:auto;margin-right:.9rem;pointer-events:auto}
+.ust-ilet{display:inline-flex;align-items:center;gap:.45rem;min-height:44px;min-width:44px;padding:0 .7rem;justify-content:center;border-radius:99px;color:var(--site-beyaz);text-decoration:none;font-size:.8rem;font-weight:600;letter-spacing:.02em;white-space:nowrap;transition:background-color .2s var(--ease),color .2s var(--ease)}
+.ilet-ikon{width:1.1rem;height:1.1rem;fill:currentColor;flex:none}
+.ilet-kisa{display:none}
+.ust-ig{padding:0;width:44px}
+@media (hover:hover) and (pointer:fine){ .ust-ilet:hover{background:rgba(255,255,255,.14);color:var(--site-fosfor)} }
+/* phone: the logo keeps its size; contacts move to a strip above it */
+@media (max-width:899px){
+  :root{--ust-serit:44px}
+  .ust{display:grid;grid-template-columns:1fr auto;grid-template-rows:var(--ust-serit) 1fr;align-items:center;height:calc(var(--ust-h) + env(safe-area-inset-top))}
+  .ust-iletisim{order:-1;width:calc(100% + 2 * var(--kenar));margin:0 calc(var(--kenar) * -1);padding:0 var(--kenar);height:var(--ust-serit);justify-content:space-between;gap:0;background:rgba(6,16,29,.55);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid var(--cam-kenar)}
+  .ust-ilet{font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;padding:0 .5rem;width:auto}
+  .ilet-uzun{display:none}
+  .ilet-kisa{display:inline}
+  .ust-iletisim{grid-column:1 / -1;grid-row:1}
+  .ust-logo{grid-column:1;grid-row:2;justify-self:start}
+  .ust-wa{grid-column:2;grid-row:2}
+  :root{--ust-h:calc(5.4rem + var(--ust-serit))}
+}
+
+/* four contact links on a phone strip: tighter labels so they fit a 360px screen */
+@media (max-width:899px){ .ust-ilet{letter-spacing:.04em;padding:0 .3rem;gap:.35rem} }
+
+/* icons only; each icon goes straight to its link */
+.ust-ilet{width:44px;padding:0}
+.ilet-ikon{width:1.2rem;height:1.2rem}
+@media (max-width:899px){
+  .ust-iletisim{justify-content:flex-end;gap:.25rem}
+  .ust-ilet{width:44px;padding:0}
+}
+/* top WhatsApp button removed: the contact icons close the bar on the right */
+.ust-iletisim{margin-right:0}
+/* weeks fallback: one WhatsApp button while the live calendar is not available */
+.hafta-yedek{display:flex}
+.hafta-yedek .dugme{gap:.55rem}
