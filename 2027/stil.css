@@ -289,7 +289,7 @@ ul,ol{list-style:none;padding:0}
 .g-filo .bolum-gorsel::after{background:linear-gradient(to bottom,rgba(6,16,29,.62) 0%,rgba(6,16,29,.18) 26%,rgba(6,16,29,.1) 55%,rgba(6,16,29,.7) 80%,var(--gece) 100%)}
 .g-filo .bolum-not{color:var(--kirik)}
 /* phone: heading over the sky, the bow shows through, cards stack below the hull */
-.g-filo .filo-izgara{margin-top:calc(min(125svh, 1100px) * .5)}
+.g-filo .filo-izgara{margin-top:1.5rem}
 .filo-bag,.filo-bos{background:rgba(11,26,46,.6);border:1px solid var(--cam-kenar);border-style:solid;border-radius:16px;-webkit-backdrop-filter:blur(16px) saturate(1.25);backdrop-filter:blur(16px) saturate(1.25);box-shadow:0 20px 40px -26px rgba(0,0,0,.7)}
 .filo-amiral .filo-bag{background:rgba(6,16,29,.74)}
 .filo-bos{min-height:8.5rem}
@@ -342,7 +342,7 @@ ul,ol{list-style:none;padding:0}
   .g-haftalar .hafta-sutun{grid-column:2;grid-row:2;align-self:end;margin-top:0}
 }
 /* the weeks column reads as one glass panel, so its small lines hold over the bright deck */
-.g-haftalar .hafta-sutun{padding:1.1rem;border-radius:16px;border:1px solid var(--cam-kenar);background:rgba(6,16,29,.62);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);box-shadow:0 20px 40px -26px rgba(0,0,0,.7);margin-top:calc(min(125svh, 1100px) * .46)}
+.g-haftalar .hafta-sutun{padding:1.1rem;border-radius:16px;border:1px solid var(--cam-kenar);background:rgba(6,16,29,.62);-webkit-backdrop-filter:blur(16px) saturate(1.2);backdrop-filter:blur(16px) saturate(1.2);box-shadow:0 20px 40px -26px rgba(0,0,0,.7);margin-top:1.5rem}
 .g-haftalar .hafta-sutun .filtre{margin-top:0}
 .g-haftalar .hafta-sutun .bolum-not{margin-bottom:1rem;text-shadow:none}
 .hafta-detay{margin-top:1rem}
