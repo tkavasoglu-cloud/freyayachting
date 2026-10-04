@@ -551,3 +551,13 @@ ul,ol{list-style:none;padding:0}
 /* small phones: keep "Haftalar için WhatsApp'tan yazın" on one line */
 @media (max-width:399px){ .hafta-yedek .dugme{padding-inline:1rem;letter-spacing:0} }
 @media (max-width:369px){ .hafta-yedek .dugme{padding-inline:.8rem;font-size:.9rem;gap:.45rem} }
+
+/* phone only (desktop starts at 900px and is left as it is) */
+@media (max-width:899px){
+  /* opening headline ("Deniz bilen… / ilk kez çıkan…") 20% smaller */
+  .kahraman .baslik{font-size:clamp(2.24rem,10vw,3.52rem)}
+  /* weeks: the box sits one box-height lower and is clear glass, so the photo shows through */
+  .g-haftalar .hafta-sutun{margin-top:13rem;background:rgba(6,16,29,.26);border-color:rgba(255,255,255,.24);-webkit-backdrop-filter:blur(7px) saturate(1.3);backdrop-filter:blur(7px) saturate(1.3)}
+  .g-haftalar .hafta-sutun .bolum-not{text-shadow:0 1px 10px rgba(6,16,29,.9)}
+  .g-haftalar .hafta{background:rgba(6,16,29,.28)}
+}
