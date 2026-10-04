@@ -282,7 +282,8 @@ ul,ol{list-style:none;padding:0}
 @media (min-width:700px){ .g-filo{padding-top:calc(56.25vw * .86)} }
 
 /* ---------- Filomuz: 01 is the section's full background; glass cards in the opening's language ---------- */
-.g-filo{padding-top:calc(var(--ust-h) + env(safe-area-inset-top) + 2rem);min-height:100svh}
+/* phone: links land the section just below the top bar (scroll-margin-top), so only a small gap above the heading */
+.g-filo{padding-top:calc(env(safe-area-inset-top) + 1.75rem);min-height:100svh}
 @media (min-width:700px){ .g-filo{padding-top:calc(var(--ust-h) + 3rem)} }
 .g-filo .bolum-gorsel{inset:0;height:min(100%,125svh)}
 .g-filo .bolum-gorsel img{width:100%;height:100%;object-fit:cover;object-position:20% 50%}
@@ -319,7 +320,7 @@ ul,ol{list-style:none;padding:0}
 }
 
 /* ---------- 2027 boş haftalar: same structure as Filomuz, image 1 as the full background ---------- */
-.g-haftalar{padding-top:calc(var(--ust-h) + env(safe-area-inset-top) + 2rem);min-height:100svh}
+.g-haftalar{padding-top:calc(env(safe-area-inset-top) + 1.75rem);min-height:100svh}
 .g-haftalar .bolum-gorsel{inset:0;height:min(100%,125svh)}
 .g-haftalar .bolum-gorsel img{width:100%;height:100%;object-fit:cover;object-position:52% 40%}
 .g-haftalar .bolum-gorsel::after{background:linear-gradient(to bottom,rgba(6,16,29,.62) 0%,rgba(6,16,29,.18) 26%,rgba(6,16,29,.1) 55%,rgba(6,16,29,.7) 80%,var(--gece) 100%)}
@@ -386,7 +387,7 @@ ul,ol{list-style:none;padding:0}
 .mod-genis .video{inset:-8%;width:116%;height:116%;will-change:transform}
 
 /* closing WhatsApp section over image 2: the yacht's stern and the couple stay clear; the words sit on open sea */
-.g-son{padding-top:calc(100vw - 3rem);padding-bottom:5rem}
+.g-son{padding-top:calc(100vw - 6rem);padding-bottom:5rem}
 .g-son .son-ic{display:grid;justify-items:start;gap:.4rem}
 .g-son .bolum-baslik .b-italik{color:var(--kirik)}
 .g-son .bolum-not,.g-son .son-tel{text-shadow:0 1px 14px rgba(6,16,29,.85)}
@@ -547,3 +548,6 @@ ul,ol{list-style:none;padding:0}
 /* weeks fallback: one WhatsApp button while the live calendar is not available */
 .hafta-yedek{display:flex}
 .hafta-yedek .dugme{gap:.55rem}
+/* small phones: keep "Haftalar için WhatsApp'tan yazın" on one line */
+@media (max-width:399px){ .hafta-yedek .dugme{padding-inline:1rem;letter-spacing:0} }
+@media (max-width:369px){ .hafta-yedek .dugme{padding-inline:.8rem;font-size:.9rem;gap:.45rem} }

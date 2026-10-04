@@ -60,7 +60,7 @@
         '<span class="filo-metin">' +
           (t.amiral ? '<span class="mini filo-rozet">Amiral tekne</span>' : '') +
           '<span class="filo-ad"' + (t.dil ? ' lang="' + t.dil + '"' : '') + '>' + t.ad + '</span>' +
-          '<span class="filo-alt">' + [t.model, t.yil, t.kabin && t.kabin + ' kabin', t.kisi && 'en fazla ' + t.kisi + ' kişi'].filter(Boolean).join(' · ') + '</span>' +
+          '<span class="filo-alt">' + [t.model, t.yil, t.kabin && t.kabin + ' kabin', t.kisi && 'en\u00a0fazla\u00a0' + t.kisi + '\u00a0kişi'].filter(Boolean).join(' · ') + '</span>' +
           (t.fiyat ? '<span class="mini">2027 haftalık ' + fiyatYaz(t.fiyat) + " EUR'dan</span>" : '') +
           (t.sayfa ? '<span class="mini filo-git">Tekne sayfası ↗</span>' : '') +
         '</span>';
