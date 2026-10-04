@@ -14,8 +14,8 @@
 
 /* ─── HERO — bow-forward photo, left-aligned, navy overlay ───
    object-position is tuned from actually viewing the source photo
-   (images/hero-sailboat.png): boat sits right, hull runs ~55-90%
-   of the frame width. See object-position comment below for the
+   (images/acilis-yeni-*, from kaynak/01.png; the old images/hero-sailboat-*
+   are kept for rollback): the boat fills the frame, bow on the left at ~10-25%. See object-position comment below for the
    crop math and the mobile override. */
 .hero-2026 {
   position: relative;
@@ -35,8 +35,9 @@
   transform: scale(1);
   animation: hero-kenburns 22s ease-out forwards;
 }
+/* phone: tall crop focused on the bow (left edge of the photo) */
 @media (max-width: 640px) {
-  .hero-2026__bg img { object-position: 68% 50%; }
+  .hero-2026__bg img { object-position: 0% 50%; }
 }
 @keyframes hero-kenburns { from { transform: scale(1); } to { transform: scale(1.07); } }
 .hero-2026__bg::after {
