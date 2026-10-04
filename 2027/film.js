@@ -38,8 +38,10 @@
   // ---------- fleet grid ----------
   function filoKur() {
     const izgara = document.getElementById('filo-izgara');
-    // boats that are not confirmed yet ('yakinda') get no card
+    // boats that are not confirmed yet ('yakinda') get an empty 'Yakında' tile, no name
     if (!izgara || !aktifler.length) return;
+    // a second boat on sale brings back the wording for the rest of the fleet
+    if (aktifler.length > 1) document.getElementById('filo-not').textContent = 'Amiral teknemiz Freya ve filomuzdaki diğer tekneler';
     izgara.replaceChildren(...aktifler.map(t => {
       const li = document.createElement('li');
       li.className = 'filo-kart' + (t.amiral ? ' filo-amiral' : '');
@@ -63,6 +65,11 @@
           (t.sayfa ? '<span class="mini filo-git">Tekne sayfası ↗</span>' : '') +
         '</span>';
       li.append(a);
+      return li;
+    }), ...FILO.filter(t => t.durum === 'yakinda').map(() => {
+      const li = document.createElement('li');
+      li.className = 'filo-kart';
+      li.innerHTML = '<div class="filo-bos"><span class="filo-ad">Yakında</span><span class="mini">Yeni tekne</span></div>';
       return li;
     }));
   }
@@ -113,14 +120,17 @@
     if (tekne.takvim === 'canli' && !takvim) { liste.replaceChildren(yedekSatir); return; }
     const veri = (tekne.takvim === 'canli' ? takvim : tekne.musaitlik) || {};
     const bugun = new Date(simdi() + 3 * 36e5).toISOString().slice(0, 10);   // today in Istanbul
-    const haftalar = Object.keys(veri).sort().filter(k => {
+    const bosHaftalar = Object.keys(veri).sort().filter(k => {
       const [y, m, d] = k.split('-').map(Number);
       const bitis = new Date(Date.UTC(y, m - 1, d + 6)).toISOString().slice(0, 10);
       return y === 2027 && veri[k] && veri[k].durum === 'bos' && new Date(Date.UTC(y, m - 1, d)).getUTCDay() === 6 && bitis >= bugun;
     });
-    if (tekne.takvim === 'canli' && haftalar.length) {
-      // "from" price = the lowest price among the weeks on show
-      const fiyatlar = haftalar.map(k => veri[k].fiyat).filter(f => typeof f === 'number' && f > 0);
+    // only the weeks picked for the page (vitrin) are listed; the rest are on the full calendar link
+    const vitrin = tekne.vitrin || {};
+    const haftalar = bosHaftalar.filter(k => k in vitrin);
+    if (tekne.takvim === 'canli' && bosHaftalar.length) {
+      // "from" price = the lowest price among all open weeks
+      const fiyatlar = bosHaftalar.map(k => veri[k].fiyat).filter(f => typeof f === 'number' && f > 0);
       if (fiyatlar.length && Math.min(...fiyatlar) !== tekne.fiyat) { tekne.fiyat = Math.min(...fiyatlar); filoKur(); }
     }
     if (not) not.innerHTML = 'Cumartesi 15:00 – Cuma' + (tekne.fiyat ? ' · ' + tekne.ad + ' haftalık <span class="kirmizi">' + fiyatYaz(tekne.fiyat) + " EUR</span>'dan" : '');
@@ -141,6 +151,7 @@
       const metin = haftaMetni(k);
       li.querySelector('a').dataset.konum = 'hafta';
       li.querySelector('.hafta-tarih').textContent = metin;
+      if (vitrin[k]) li.querySelector('.hafta-not').textContent = vitrin[k];
       li.querySelector('a').href = WA + '?text=' + encodeURIComponent('Merhaba, 2027 haftaları hakkında bilgi almak istiyorum: ' + tekne.ad + ', ' + metin + '.');
       return li;
     }));
@@ -180,7 +191,7 @@
   erkenRezervasyon();
 
   // ---------- letter wave on the big headings ----------
-  // Each letter arrives blurred and a little low, then sharpens, rises and fades in, one after
+  // Each letter arrives a little low, then rises and fades in, one after
   // another, so the word ripples in. Words stay unbroken; the heading keeps its full text for
   // screen readers. Skipped entirely when the visitor prefers reduced motion.
   const harfDalgasi = !matchMedia('(prefers-reduced-motion: reduce)').matches;
