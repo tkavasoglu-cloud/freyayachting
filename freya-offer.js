@@ -121,9 +121,11 @@ function showResult(data, payload) {
   const expiry = data.ExpiresAt || data.expiresAt;
 
   let extras = null;
+  let mandatory = [];
   try {
     const upsells = typeof data.UpsellsJSON === 'string' ? JSON.parse(data.UpsellsJSON) : (data.upsellsJSON || null);
     if (upsells && upsells.extras && upsells.extras.length) extras = upsells.extras;
+    if (upsells && Array.isArray(upsells.mandatory)) mandatory = upsells.mandatory;
   } catch (e) { extras = null; }
 
   const totalPrice = Number(price) + allExtras;
@@ -149,21 +151,23 @@ function showResult(data, payload) {
   card.appendChild(resultRow('Sezon', SEASON_LABELS[season] || season));
   card.appendChild(resultRow('Aylık Doluluk', '%' + occupancy));
   card.appendChild(resultRow('Tekne + Kaptan', '€' + Number(price).toLocaleString('tr-TR')));
+  // Zorunlu ekstralar (temizlik, transit log) toplama dahil; opsiyoneller aşağıda ayrı listelenir, toplama girmez.
+  mandatory.forEach((m) => card.appendChild(resultRow(m.name, '€' + Number(m.total).toLocaleString('tr-TR'))));
 
   if (extras) {
     const box = el('div', 'offer-result-extras-2026');
-    box.appendChild(el('p', 'offer-result-extras-2026__title', 'Opsiyonel Ekstralar'));
+    box.appendChild(el('p', 'offer-result-extras-2026__title', 'Opsiyonel Ekstralar (toplama dahil değil)'));
     extras.forEach((e) => {
       const item = el('div', 'offer-extra-item-2026');
       item.appendChild(el('span', null, e.name + ' — ' + e.desc));
-      item.appendChild(el('span', null, '€' + e.total));
+      item.appendChild(el('span', null, Number(e.total) === 0 ? 'Hediye' : '€' + Number(e.total).toLocaleString('tr-TR')));
       box.appendChild(item);
     });
     card.appendChild(box);
   }
 
   const total = el('div', 'offer-result-total-2026');
-  total.appendChild(el('span', 'offer-result-row-2026__label', 'Her Şey Dahil Toplam'));
+  total.appendChild(el('span', 'offer-result-row-2026__label', 'Toplam (zorunlu ekstralar dahil)'));
   total.appendChild(el('span', 'offer-result-total-2026__value', '€' + totalPrice.toLocaleString('tr-TR')));
   card.appendChild(total);
 
