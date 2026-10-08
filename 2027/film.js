@@ -240,7 +240,7 @@
     const a = e.target.closest('a[href^="https://wa.me/"]');
     if (!a || typeof window.gtag !== 'function') return;
     const konum = a.dataset.konum || (a.closest('.alt-sabit') ? 'sabit' : a.closest('.hafta-yedek') ? 'hafta-yedek' : a.closest('#iletisim') ? 'son' : 'diger');
-    window.gtag('event', 'whatsapp_tiklama', { sayfa: '2027', konum, link_url: a.href });
+    window.gtag('event', 'whatsapp_tiklama', { sayfa: '2027', konum, link_url: a.href, transport_type: 'beacon' });
   });
 
   // Section photographs load only as their section nears the screen, so the opening stays light.

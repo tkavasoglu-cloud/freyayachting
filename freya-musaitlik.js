@@ -132,6 +132,7 @@
 
     upcoming.forEach(function (w) { gridEl.appendChild(buildCard(w)); });
     calendarEl.hidden = false;
+    if (location.hash === '#musaitlik-calendar') calendarEl.scrollIntoView();
   }
 
   try {
