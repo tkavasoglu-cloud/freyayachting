@@ -11,6 +11,7 @@
 ══════════════════════════════════════════════════════════ */
 (function () {
   'use strict';
+  /* EN-DIL */ var EN = document.documentElement.lang === 'en';
 
   /* ── Offer bar → WhatsApp ── */
   var offerBar = document.getElementById('offerBar');
@@ -22,14 +23,17 @@
       var boat  = offerBar.querySelector('#offer-boat').value;
 
       var dateText = date
-        ? new Date(date + 'T00:00:00').toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })
-        : 'belirtilecek bir tarihte';
+        ? new Date(date + 'T00:00:00').toLocaleDateString(EN ? 'en-GB' : 'tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })
+        : (EN ? 'a date to be agreed' : 'belirtilecek bir tarihte');
 
-      var guestCount = guests.replace(/\s*Kişi$/, '');
+      var guestCount = guests.replace(/\s*(Kişi|guests?)$/i, '');
 
-      var message = boat === 'Fark Etmez'
-        ? 'Merhaba, ' + dateText + ' için ' + guestCount + ' kişilik rezervasyon hakkında teklif almak istiyorum.'
-        : 'Merhaba, ' + dateText + ' için ' + guestCount + ' kişilik ' + boat + ' rezervasyonu hakkında teklif almak istiyorum.';
+      var noPref = boat === 'Fark Etmez' || boat === 'No preference';
+      var message = EN
+        ? "Hello, I'd like a quote for " + guestCount + ' guests' + (noPref ? '' : ' on ' + boat) + ' on ' + dateText + '.'
+        : (noPref
+          ? 'Merhaba, ' + dateText + ' için ' + guestCount + ' kişilik rezervasyon hakkında teklif almak istiyorum.'
+          : 'Merhaba, ' + dateText + ' için ' + guestCount + ' kişilik ' + boat + ' rezervasyonu hakkında teklif almak istiyorum.');
 
       window.open('https://wa.me/908508402465?text=' + encodeURIComponent(message), '_blank', 'noopener,noreferrer');
     });

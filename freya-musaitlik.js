@@ -16,7 +16,8 @@
   var CACHE_KEY = 'freya_musaitlik_cache';
   var CACHE_TTL_MS = 5 * 60 * 1000;
   var WHATSAPP_NUMBER = '908508402465';
-  var MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+  /* EN-DIL */ var EN = document.documentElement.lang === 'en';
+  var MONTHS = EN ? ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] : ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 
   function showFallback() {
     var calendarEl = document.getElementById('musaitlik-calendar');
@@ -48,12 +49,12 @@
   }
 
   function normalizePrice(fiyat) {
-    if (typeof fiyat === 'number' && !isNaN(fiyat)) return '€' + fiyat.toLocaleString('tr-TR');
+    if (typeof fiyat === 'number' && !isNaN(fiyat)) return '€' + fiyat.toLocaleString(EN ? 'en-US' : 'tr-TR');
     return '';
   }
 
   function waLink(rangeLabel) {
-    var text = 'Merhaba, ' + rangeLabel + ' haftası için rezervasyon bilgisi almak istiyorum.';
+    var text = EN ? "Hello, I'd like booking information for the week of " + rangeLabel + '.' : 'Merhaba, ' + rangeLabel + ' haftası için rezervasyon bilgisi almak istiyorum.';
     return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(text);
   }
 
@@ -71,7 +72,7 @@
     if (week.durum === 'dolu') {
       var card = el('div', 'week-card-2026 week-card-2026--dolu');
       card.appendChild(el('div', 'week-card-2026__dates', range));
-      card.appendChild(el('div', 'week-card-2026__status', 'DOLU'));
+      card.appendChild(el('div', 'week-card-2026__status', (EN ? 'BOOKED' : 'DOLU')));
       return card;
     }
 
@@ -82,14 +83,14 @@
 
     if (week.durum === 'ozel') {
       link.className = 'week-card-2026 week-card-2026--ozel';
-      link.appendChild(el('span', 'week-card-2026__badge', 'Özel Teklif'));
+      link.appendChild(el('span', 'week-card-2026__badge', (EN ? 'Special Offer' : 'Özel Teklif')));
       link.appendChild(el('div', 'week-card-2026__dates', range));
       if (price) link.appendChild(el('div', 'week-card-2026__price', price));
     } else {
       link.className = 'week-card-2026 week-card-2026--bos';
       link.appendChild(el('div', 'week-card-2026__dates', range));
       if (price) link.appendChild(el('div', 'week-card-2026__price', price));
-      link.appendChild(el('div', 'week-card-2026__status', 'Müsait'));
+      link.appendChild(el('div', 'week-card-2026__status', (EN ? 'Available' : 'Müsait')));
     }
     return link;
   }

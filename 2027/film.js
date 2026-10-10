@@ -3,12 +3,13 @@
 
   const root = document.documentElement;
   const WA = 'https://wa.me/908508402465';
-  const AYLAR = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+  /* EN-DIL */ const EN = root.lang === 'en';
+  const AYLAR = EN ? ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'] : ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
 
   // Fleet and availability come from filo.js (window.FILO).
   const FILO = Array.isArray(window.FILO) ? window.FILO : [];
   const aktifler = FILO.filter(t => t.durum === 'aktif');
-  const fiyatYaz = n => new Intl.NumberFormat('tr-TR').format(n);
+  const fiyatYaz = n => new Intl.NumberFormat(EN ? 'en-US' : 'tr-TR').format(n);
 
   // Early-booking perk disappears at 1 May 2027 00:00 Istanbul (UTC+3).
   // ?tarih=2027-05-01T00:00:00+03:00 overrides "now" for testing.
@@ -41,7 +42,7 @@
     // boats that are not confirmed yet ('yakinda') get an empty 'Yakında' tile, no name
     if (!izgara || !aktifler.length) return;
     // a second boat on sale brings back the wording for the rest of the fleet
-    if (aktifler.length > 1) document.getElementById('filo-not').textContent = 'Amiral teknemiz Freya ve filomuzdaki diğer tekneler';
+    if (aktifler.length > 1) document.getElementById('filo-not').textContent = (EN ? 'Our flagship Freya and the other boats in our fleet' : 'Amiral teknemiz Freya ve filomuzdaki diğer tekneler');
     izgara.replaceChildren(...aktifler.map(t => {
       const li = document.createElement('li');
       li.className = 'filo-kart' + (t.amiral ? ' filo-amiral' : '');
@@ -49,8 +50,8 @@
       a.className = 'kart-bag filo-bag';
       if (t.sayfa) {
         // the boat's own page on freyayachting.com, in a new tab so this page stays open
-        a.href = t.sayfa; a.target = '_blank'; a.rel = 'noopener';
-        a.setAttribute('aria-label', t.ad + ' tekne sayfası, freyayachting.com (yeni sekmede açılır)');
+        a.href = EN ? t.sayfa.replace('freyayachting.com/', 'freyayachting.com/en/') : t.sayfa; a.target = '_blank'; a.rel = 'noopener';
+        a.setAttribute('aria-label', t.ad + (EN ? ' boat page, freyayachting.com (opens in a new tab)' : ' tekne sayfası, freyayachting.com (yeni sekmede açılır)'));
       } else {
         a.href = '#bos-haftalar';
         a.dataset.tekne = t.id;
@@ -58,18 +59,18 @@
       a.innerHTML =
         (t.gorsel ? '<span class="filo-gorsel"><img data-src="' + t.gorsel + '-700.webp" data-srcset="' + t.gorsel + '-700.webp 700w, ' + t.gorsel + '-1200.webp 1200w" sizes="(min-width: 900px) 50vw, 100vw" alt="" width="1200" height="675" decoding="async"></span>' : '') +
         '<span class="filo-metin">' +
-          (t.amiral ? '<span class="mini filo-rozet">Amiral tekne</span>' : '') +
+          (t.amiral ? '<span class="mini filo-rozet">' + (EN ? 'Flagship' : 'Amiral tekne') + '</span>' : '') +
           '<span class="filo-ad"' + (t.dil ? ' lang="' + t.dil + '"' : '') + '>' + t.ad + '</span>' +
-          '<span class="filo-alt">' + [t.model, t.yil, t.kabin && t.kabin + ' kabin', t.kisi && 'en\u00a0fazla\u00a0' + t.kisi + '\u00a0kişi'].filter(Boolean).join(' · ') + '</span>' +
-          (t.fiyat ? '<span class="mini">2027 haftalık ' + fiyatYaz(t.fiyat) + " EUR'dan</span>" : '') +
-          (t.sayfa ? '<span class="mini filo-git">Tekne sayfası ↗</span>' : '') +
+          '<span class="filo-alt">' + [t.model, t.yil, t.kabin && t.kabin + (EN ? ' cabins' : ' kabin'), t.kisi && (EN ? 'up\u00a0to\u00a0' + t.kisi + '\u00a0guests' : 'en\u00a0fazla\u00a0' + t.kisi + '\u00a0kişi')].filter(Boolean).join(' · ') + '</span>' +
+          (t.fiyat ? '<span class="mini">' + (EN ? '2027 weekly from ' + fiyatYaz(t.fiyat) + ' EUR' : '2027 haftalık ' + fiyatYaz(t.fiyat) + " EUR'dan") + '</span>' : '') +
+          (t.sayfa ? '<span class="mini filo-git">' + (EN ? 'Boat page ↗' : 'Tekne sayfası ↗') + '</span>' : '') +
         '</span>';
       li.append(a);
       return li;
     }), ...FILO.filter(t => t.durum === 'yakinda').map(() => {
       const li = document.createElement('li');
       li.className = 'filo-kart';
-      li.innerHTML = '<div class="filo-bos"><span class="filo-ad">Yakında</span><span class="mini">Yeni tekne</span></div>';
+      li.innerHTML = '<div class="filo-bos"><span class="filo-ad">' + (EN ? 'Coming soon' : 'Yakında') + '</span><span class="mini">' + (EN ? 'New boat' : 'Yeni tekne') + '</span></div>';
       return li;
     }));
   }
@@ -133,15 +134,15 @@
       const fiyatlar = bosHaftalar.map(k => veri[k].fiyat).filter(f => typeof f === 'number' && f > 0);
       if (fiyatlar.length && Math.min(...fiyatlar) !== tekne.fiyat) { tekne.fiyat = Math.min(...fiyatlar); filoKur(); }
     }
-    if (not) not.innerHTML = 'Cumartesi 15:00 – Cuma' + (tekne.fiyat ? ' · ' + tekne.ad + ' haftalık <span class="kirmizi">' + fiyatYaz(tekne.fiyat) + " EUR</span>'dan" : '');
+    if (not) not.innerHTML = (EN ? 'Saturday 15:00 – Friday' : 'Cumartesi 15:00 – Cuma') + (tekne.fiyat ? ' · ' + tekne.ad + (EN ? ' weekly from <span class="kirmizi">' + fiyatYaz(tekne.fiyat) + ' EUR</span>' : ' haftalık <span class="kirmizi">' + fiyatYaz(tekne.fiyat) + " EUR</span>'dan") : '');
     if (!haftalar.length && tekne.takvim === 'canli') { liste.replaceChildren(yedekSatir); return; }
     if (!haftalar.length) {
       const li = document.createElement('li');
       li.className = 'cam hafta hafta-bos';
-      li.innerHTML = '<span class="hafta-tarih">Haftalar yakında</span><span class="hafta-not mini">' + tekne.ad + ' için takvim henüz açılmadı</span>';
+      li.innerHTML = '<span class="hafta-tarih">' + (EN ? 'Weeks coming soon' : 'Haftalar yakında') + '</span><span class="hafta-not mini">' + (EN ? 'The calendar for ' + tekne.ad + ' is not open yet' : tekne.ad + ' için takvim henüz açılmadı') + '</span>';
       const a = kalip.querySelector('a').cloneNode(true);
-      a.textContent = 'WhatsApp\'tan sorun';
-      a.href = WA + '?text=' + encodeURIComponent('Merhaba, 2027 haftaları hakkında bilgi almak istiyorum.');
+      a.textContent = EN ? 'Ask on WhatsApp' : 'WhatsApp\'tan sorun';
+      a.href = WA + '?text=' + encodeURIComponent(EN ? "Hello, I'd like information about the 2027 weeks." : 'Merhaba, 2027 haftaları hakkında bilgi almak istiyorum.');
       li.append(a);
       liste.replaceChildren(li);
       return;
@@ -152,7 +153,7 @@
       li.querySelector('a').dataset.konum = 'hafta';
       li.querySelector('.hafta-tarih').textContent = metin;
       if (vitrin[k]) li.querySelector('.hafta-not').textContent = vitrin[k];
-      li.querySelector('a').href = WA + '?text=' + encodeURIComponent('Merhaba, 2027 haftaları hakkında bilgi almak istiyorum: ' + tekne.ad + ', ' + metin + '.');
+      li.querySelector('a').href = WA + '?text=' + encodeURIComponent(EN ? "Hello, I'd like information about the 2027 weeks: " + tekne.ad + ', ' + metin + '.' : 'Merhaba, 2027 haftaları hakkında bilgi almak istiyorum: ' + tekne.ad + ', ' + metin + '.');
       return li;
     }));
   }
