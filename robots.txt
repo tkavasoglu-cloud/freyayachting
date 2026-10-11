@@ -3,4 +3,4 @@ Allow: /
 Disallow: /ucus.html
 Disallow: /blog/makale-sablonu.html
 
-Sitemap: https://www.freyayachting.com/sitemap.xml
+Sitemap: https://freyayachting.com/sitemap.xml

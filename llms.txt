@@ -8,17 +8,17 @@ Filo: Freya (2024 model Bavaria Cruiser 46) ve Derin (Beneteau Clipper 423). Fre
 
 ## Ana Sayfalar
 
-- [Ana Sayfa](https://www.freyayachting.com/): Genel tanıtım, tekne kiralama ve yelken eğitimi hizmetlerine giriş.
-- [Filomuz](https://www.freyayachting.com/filomuz.html): Bavaria Cruiser 46 ve Beneteau Clipper 423 filo karşılaştırması, haftalık kiralama fiyatları.
-- [Freya — Bavaria Cruiser 46](https://www.freyayachting.com/freya.html): Freya teknesinin teknik özellikleri, ekipman ve kiralama detayları.
-- [Derin — Beneteau Clipper 423](https://www.freyayachting.com/derin.html): Derin teknesinin detayları, deneyimli yelkenciler için bare-boat kiralama.
-- [Yelken Eğitimi](https://www.freyayachting.com/egitim.html): TYF sertifikalı, World Sailing onaylı YY-1/YY-2/YY-3 yelken kursları.
-- [Rota](https://www.freyayachting.com/rota.html): Fethiye ve Göcek körfezi yelken rotaları ve koy rehberi.
-- [Sıkça Sorulan Sorular](https://www.freyayachting.com/sss.html): Rezervasyon, fiyatlandırma, kapora, iptal politikası ve eğitim hakkında sorular ve cevaplar.
-- [Hakkımızda](https://www.freyayachting.com/hakkimizda.html): Şirket geçmişi, hizmet felsefesi.
-- [İletişim](https://www.freyayachting.com/iletisim.html): İletişim bilgileri ve rezervasyon kanalları.
-- [Anında Teklif Al](https://www.freyayachting.com/freya-offer.html): Hızlı fiyat teklifi formu.
-- [Blog](https://www.freyayachting.com/blog.html): Fethiye tekne kiralama rehberleri, mavi yolculuk rotaları ve yelken eğitimi yazıları.
+- [Ana Sayfa](https://freyayachting.com/): Genel tanıtım, tekne kiralama ve yelken eğitimi hizmetlerine giriş.
+- [Filomuz](https://freyayachting.com/filomuz.html): Bavaria Cruiser 46 ve Beneteau Clipper 423 filo karşılaştırması, haftalık kiralama fiyatları.
+- [Freya — Bavaria Cruiser 46](https://freyayachting.com/freya.html): Freya teknesinin teknik özellikleri, ekipman ve kiralama detayları.
+- [Derin — Beneteau Clipper 423](https://freyayachting.com/derin.html): Derin teknesinin detayları, deneyimli yelkenciler için bare-boat kiralama.
+- [Yelken Eğitimi](https://freyayachting.com/egitim.html): TYF sertifikalı, World Sailing onaylı YY-1/YY-2/YY-3 yelken kursları.
+- [Rota](https://freyayachting.com/rota.html): Fethiye ve Göcek körfezi yelken rotaları ve koy rehberi.
+- [Sıkça Sorulan Sorular](https://freyayachting.com/sss.html): Rezervasyon, fiyatlandırma, kapora, iptal politikası ve eğitim hakkında sorular ve cevaplar.
+- [Hakkımızda](https://freyayachting.com/hakkimizda.html): Şirket geçmişi, hizmet felsefesi.
+- [İletişim](https://freyayachting.com/iletisim.html): İletişim bilgileri ve rezervasyon kanalları.
+- [Anında Teklif Al](https://freyayachting.com/freya-offer.html): Hızlı fiyat teklifi formu.
+- [Blog](https://freyayachting.com/blog.html): Fethiye tekne kiralama rehberleri, mavi yolculuk rotaları ve yelken eğitimi yazıları.
 
 ## İlkeler
 
