@@ -68,7 +68,7 @@
   </url>
   <url>
     <loc>https://freyayachting.com/blog.html</loc>
-    <lastmod>2026-10-10</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -135,6 +135,12 @@
   <url>
     <loc>https://freyayachting.com/blog/fethiye-de-tekne-turu-guvenli-firma-secmek-icin-7-soru.html</loc>
     <lastmod>2026-10-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://freyayachting.com/blog/kaptanli-yelkenli-kiralama-ne-demek-sertifika-sart-mi.html</loc>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
