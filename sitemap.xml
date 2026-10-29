@@ -19,8 +19,8 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://freyayachting.com/derin.html</loc>
-    <lastmod>2026-10-12</lastmod>
+    <loc>https://freyayachting.com/beneteau-oceanis-423.html</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -153,6 +153,12 @@
   <url>
     <loc>https://freyayachting.com/en/freya.html</loc>
     <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://freyayachting.com/en/beneteau-oceanis-423.html</loc>
+    <lastmod>2026-10-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

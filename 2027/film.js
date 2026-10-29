@@ -136,6 +136,18 @@
     }
     if (not) not.innerHTML = (EN ? 'Saturday 15:00 – Friday' : 'Cumartesi 15:00 – Cuma') + (tekne.fiyat ? ' · ' + tekne.ad + (EN ? ' weekly from <span class="kirmizi">' + fiyatYaz(tekne.fiyat) + ' EUR</span>' : ' haftalık <span class="kirmizi">' + fiyatYaz(tekne.fiyat) + " EUR</span>'dan") : '');
     if (!haftalar.length && tekne.takvim === 'canli') { liste.replaceChildren(yedekSatir); return; }
+    if (tekne.takvim === 'sor') {
+      // no calendar for this boat: the team confirms weekly availability (Tolga, 29 Oct 2026)
+      const li = document.createElement('li');
+      li.className = 'cam hafta hafta-bos';
+      li.innerHTML = '<span class="hafta-tarih">' + (EN ? 'Availability on request' : 'Müsaitlik sorulur') + '</span><span class="hafta-not mini">' + (EN ? 'Our team confirms the weeks for ' + tekne.ad : tekne.ad + ' için haftaları ekibimiz teyit eder') + '</span>';
+      const a = kalip.querySelector('a').cloneNode(true);
+      a.textContent = EN ? 'Ask about availability' : 'Müsaitliği sorun';
+      a.href = WA + '?text=' + encodeURIComponent(EN ? "Hello, I'd like to ask about availability for the " + tekne.ad + '.' : 'Merhaba, ' + tekne.ad + ' için müsaitlik sormak istiyorum.');
+      li.append(a);
+      liste.replaceChildren(li);
+      return;
+    }
     if (!haftalar.length) {
       const li = document.createElement('li');
       li.className = 'cam hafta hafta-bos';
