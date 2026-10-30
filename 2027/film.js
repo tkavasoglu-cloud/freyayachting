@@ -141,7 +141,7 @@
       // no calendar for this boat: the team confirms weekly availability (Tolga, 29 Oct 2026)
       const li = document.createElement('li');
       li.className = 'cam hafta hafta-bos';
-      li.innerHTML = '<span class="hafta-tarih">' + (EN ? 'Availability on request' : 'Müsaitlik sorulur') + '</span><span class="hafta-not mini">' + (EN ? 'We check the weeks for the ' + tekne.ad + ' with the owner' : tekne.ad + ' için haftaları tekne sahibiyle teyit ederiz') + '</span>';
+      li.innerHTML = '<span class="hafta-tarih">' + (EN ? 'Availability on request' : 'Müsaitlik sorulur') + '</span><span class="hafta-not mini">' + (EN ? 'We check availability for the ' + tekne.ad + ' and get back to you' : tekne.ad + ' için müsaitliği kontrol edip size döneriz') + '</span>';
       const a = kalip.querySelector('a').cloneNode(true);
       a.textContent = EN ? 'Ask about availability' : 'Müsaitliği sorun';
       a.href = WA + '?text=' + encodeURIComponent(EN ? "Hello, I'd like to ask about availability for the " + tekne.ad + '.' : 'Merhaba, ' + tekne.ad + ' için müsaitlik sormak istiyorum.');
