@@ -10,6 +10,15 @@
     if (!iz) return;
     var slaytlar = Array.prototype.slice.call(iz.children);
     var n = slaytlar.length;
+    // İlk fotoğraf hemen; diğerleri ancak kaydırınca / oka basınca yüklenir (data-src / data-srcset -> src / srcset). Geçilen karenin bir sonrakini de önden alır.
+    function yukle(i) {
+      var s = slaytlar[i]; if (!s || s.getAttribute('data-yuklendi')) return;
+      Array.prototype.forEach.call(s.querySelectorAll('[data-srcset]'), function (e) { e.setAttribute('srcset', e.getAttribute('data-srcset')); e.removeAttribute('data-srcset'); });
+      Array.prototype.forEach.call(s.querySelectorAll('img[data-src]'), function (e) { e.setAttribute('src', e.getAttribute('data-src')); e.removeAttribute('data-src'); });
+      s.setAttribute('data-yuklendi', '1');
+    }
+    var etkilesim = false;
+    function etkilesti(i) { etkilesim = true; yukle(i); yukle(i + 1); }
     var ad = kok.getAttribute('data-ad') || 'Tekne';
     kok.classList.add('fc--js');
     slaytlar.forEach(function (s, i) { s.setAttribute('aria-label', (i + 1) + ' / ' + n); });
@@ -43,7 +52,7 @@
       onceki.disabled = i === 0; sonraki.disabled = i === n - 1;
     }
     function git(i) {
-      i = Math.max(0, Math.min(n - 1, i));
+      i = Math.max(0, Math.min(n - 1, i)); etkilesti(i);
       iz.scrollTo({ left: i * iz.clientWidth, behavior: azHareket ? 'auto' : 'smooth' });
       guncelle(i);
       sayac.textContent = ad + ' fotoğraf ' + (i + 1) + ' / ' + n;
@@ -54,7 +63,8 @@
       if (bekle) return; bekle = true;
       window.requestAnimationFrame(function () {
         bekle = false;
-        var i = Math.round(iz.scrollLeft / (iz.clientWidth || 1));
+        var x = iz.scrollLeft / (iz.clientWidth || 1), i = Math.round(x);
+        if (x > 0.01 || etkilesim) { yukle(Math.floor(x)); yukle(Math.ceil(x)); if (x > 0.01) etkilesti(i); } // parmak hareket ettikçe görünen kareler yüklenir
         if (i !== simdi) guncelle(i);
       });
     }, { passive: true });
