@@ -563,3 +563,5 @@ ul,ol{list-style:none;padding:0}
   .g-haftalar .hafta-sutun .bolum-not{text-shadow:0 1px 10px rgba(6,16,29,.9)}
   .g-haftalar .hafta{background:rgba(6,16,29,.28)}
 }
+
+.kucuk-ek{text-transform:none} /* model eki (36i) büyük harfli başlıkta küçük kalır */
