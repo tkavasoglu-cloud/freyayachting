@@ -13,7 +13,7 @@ window.FILO = [
   { id: 'freya', ad: 'Freya', durum: 'aktif', amiral: true, model: 'Bavaria Cruiser 46', yil: 2024, kabin: 4, wc: 3, kisi: 7, fiyat: 2425, sayfa: 'https://freyayachting.com/freya.html', takvim: 'canli', vitrin: {} },   // e.g. vitrin: { '2027-05-01': 'Erken rezervasyon fiyatı' }
   { id: 'life-is-beautiful', ad: 'Life Is Beautiful', dil: 'en', durum: 'pasif', model: 'Bavaria Cruiser 46', yil: 2024 },   // not for charter in 2027; removed from freyayachting.com on 2 Oct 2026
   { id: 'beneteau-oceanis-423', ad: 'Beneteau Oceanis 423', dil: 'en', durum: 'aktif', model: 'Beneteau Oceanis Clipper 423', yil: 2007, kabin: 3, wc: 2, kisi: 6, fiyat: 1800, sayfa: 'https://freyayachting.com/beneteau-oceanis-423.html', takvim: 'sor', saat: ['Cumartesi 15:00 – Cumartesi 09:00', 'Saturday 15:00 – Saturday 09:00'] },   // skippered or bareboat (K-079); no calendar: 'Müsaitliği sorun' button instead of weeks (Tolga, 29 Oct 2026)
+  { id: 'jeanneau-sun-odyssey-36i', ad: 'Jeanneau Sun Odyssey 36i', dil: 'en', durum: 'aktif', model: 'Jeanneau Sun Odyssey 36i', yil: 2011, kabin: 3, wc: 2, kisi: 6, fiyat: 1600, sayfa: 'https://freyayachting.com/jeanneau-sun-odyssey-36i.html', takvim: 'sor', saat: ['Cumartesi 15:00 – Cumartesi 09:00', 'Saturday 15:00 – Saturday 09:00'] },   // skippered or bareboat (K-079); no calendar: 'Müsaitliği sorun' button instead of weeks (Tolga, 29 Oct 2026)
   { id: 'tekne-4', ad: 'Yeni tekne', durum: 'yakinda' },
   { id: 'tekne-5', ad: 'Yeni tekne', durum: 'yakinda' },
-  { id: 'tekne-6', ad: 'Yeni tekne', durum: 'yakinda' },
 ];
