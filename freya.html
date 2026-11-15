@@ -41,61 +41,30 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "Service",
+  "serviceType": "Yat kiralama",
   "name": "Freya — Bavaria Cruiser 46",
   "description": "2024 model Bavaria Cruiser 46, 14.27m, 4 kamara, 7 kişi kapasiteli lüks yelkenli tekne. Fethiye Ecesaray Marina çıkışlı, Göcek koylarında haftalık kaptanlı charter.",
   "image": "https://static.wixstatic.com/media/ce3c80_d2a3cb4a8986419e90e85477f444f646~mv2.jpg",
-  "brand": {"@type": "Brand", "name": "Bavaria Yachts"},
+  "brand": {
+    "@type": "Brand",
+    "name": "Bavaria Yachts"
+  },
+  "provider": {
+    "@type": "Organization",
+    "name": "Freya Yachting",
+    "url": "https://freyayachting.com"
+  },
   "offers": {
     "@type": "Offer",
-    "availability": "https://schema.org/InStock",
+    "priceCurrency": "EUR",
     "priceSpecification": {
       "@type": "UnitPriceSpecification",
       "minPrice": "2500",
       "priceCurrency": "EUR",
       "unitText": "WEEK"
-    },
-    "priceCurrency": "EUR",
-    "seller": {"@type": "Organization", "name": "Freya Yachting", "url": "https://freyayachting.com"},
-    "hasMerchantReturnPolicy": {
-      "@type": "MerchantReturnPolicy",
-      "applicableCountry": "TR",
-      "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
-    },
-    "shippingDetails": {
-      "@type": "OfferShippingDetails",
-      "shippingRate": {
-        "@type": "MonetaryAmount",
-        "value": "0",
-        "currency": "EUR"
-      },
-      "shippingDestination": {
-        "@type": "DefinedRegion",
-        "addressCountry": "TR"
-      },
-      "deliveryTime": {
-        "@type": "ShippingDeliveryTime",
-        "handlingTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 0,
-          "maxValue": 1,
-          "unitCode": "DAY"
-        },
-        "transitTime": {
-          "@type": "QuantitativeValue",
-          "minValue": 0,
-          "maxValue": 0,
-          "unitCode": "DAY"
-        }
-      }
     }
-  },
-  "additionalProperty": [
-    {"@type": "PropertyValue", "name": "Uzunluk", "value": "14.27 m"},
-    {"@type": "PropertyValue", "name": "Kapasite", "value": "7 kişi"},
-    {"@type": "PropertyValue", "name": "Kamara", "value": "4"},
-    {"@type": "PropertyValue", "name": "Model Yılı", "value": "2024"}
-  ]
+  }
 }
 </script>
 <script type="application/ld+json">

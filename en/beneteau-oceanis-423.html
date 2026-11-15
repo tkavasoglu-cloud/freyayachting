@@ -40,7 +40,8 @@
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Product",
+  "@type": "Service",
+  "serviceType": "Yacht charter",
   "name": "Beneteau Oceanis 423",
   "description": "2007 Beneteau Oceanis Clipper 423, 12.8 m, 3 cabins, 2 bathrooms, up to 6 guests. Weekly charter with or without a skipper from Ecesaray Marina, Fethiye; the skipper is not included in the price and costs 150 EUR per day, bareboat requires an ICC or equivalent licence. Fuel is not included: full tank out, full tank back.",
   "image": "https://freyayachting.com/images/beneteau-oceanis-423-900.jpg",
@@ -48,9 +49,13 @@
     "@type": "Brand",
     "name": "Beneteau"
   },
+  "provider": {
+    "@type": "Organization",
+    "name": "Freya Yachting",
+    "url": "https://freyayachting.com"
+  },
   "offers": {
     "@type": "Offer",
-    "availability": "https://schema.org/InStock",
     "priceCurrency": "EUR",
     "priceSpecification": {
       "@type": "UnitPriceSpecification",
@@ -58,45 +63,8 @@
       "maxPrice": "2250",
       "priceCurrency": "EUR",
       "unitText": "WEEK"
-    },
-    "seller": {
-      "@type": "Organization",
-      "name": "Freya Yachting",
-      "url": "https://freyayachting.com"
     }
-  },
-  "additionalProperty": [
-    {
-      "@type": "PropertyValue",
-      "name": "Length",
-      "value": "12.8 m"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Capacity",
-      "value": "6 guests"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Cabins",
-      "value": "3"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Bathrooms",
-      "value": "2"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Year",
-      "value": "2007"
-    },
-    {
-      "@type": "PropertyValue",
-      "name": "Charter",
-      "value": "With or without a skipper, weekly (skipper not included: 150 EUR per day)"
-    }
-  ]
+  }
 }
 </script>
 <script type="application/ld+json">
