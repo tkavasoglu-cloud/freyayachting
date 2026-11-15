@@ -63,6 +63,22 @@
       "@type": "Organization",
       "name": "Freya Yachting",
       "url": "https://freyayachting.com"
+    },
+    "hasMerchantReturnPolicy": {
+      "@type": "MerchantReturnPolicy",
+      "applicableCountry": "TR",
+      "returnPolicyCategory": "https://schema.org/MerchantReturnUnspecified",
+      "merchantReturnLink": "https://freyayachting.com/en/faq.html"
+    },
+    "shippingDetails": {
+      "@type": "OfferShippingDetails",
+      "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "EUR"},
+      "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "TR"},
+      "deliveryTime": {
+        "@type": "ShippingDeliveryTime",
+        "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY"},
+        "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+      }
     }
   },
   "additionalProperty": [
