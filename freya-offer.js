@@ -4,7 +4,7 @@
    ederek dinamik fiyat teklifi alma. Türkçe, tek dil.
 ══════════════════════════════════════════════════════════ */
 
-const WEBHOOK_URL = 'https://freyayachting.app.n8n.cloud/webhook/offer-request';
+const WEBHOOK_URL = 'https://n8n.freyayachting.com/webhook/offer-request';
 
 const PROMO_CODES = {
   SUMMER10: { discount: 10, type: 'percent' },
